@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Delivery Model — An Interactive Field Manual</title>
+<meta name="description" content="An interactive procedural handbook for running a software delivery operating model end to end." />
+<!-- Optional web fonts. The app is fully functional offline; system fallbacks are declared in the CSS. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles/app.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to lesson content</a>
+
+<div class="shell" id="shell">
+
+  <header class="topbar" role="banner">
+    <div class="topbar__brand">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M3 5.5h8.5v15H3zM21 5.5h-8.5v15H21" stroke-linejoin="round"/>
+          <path d="M12 5.5v15"/>
+        </svg>
+      </span>
+      <span class="topbar__titles">
+        <span class="topbar__title">The Delivery Model</span>
+        <span class="topbar__sub">Interactive Field Manual</span>
+      </span>
+    </div>
+
+    <nav class="modes" aria-label="Book modes">
+      <button class="mode is-on" data-mode="learn" aria-pressed="true">Learn</button>
+      <button class="mode" data-mode="reference" aria-pressed="false">Reference</button>
+      <button class="mode" data-mode="practice" aria-pressed="false">Practice</button>
+    </nav>
+
+    <div class="topbar__right">
+      <button class="iconbtn" id="mapBtn" title="Model map (m)" aria-label="Open model map">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 4.5 3.5 6.8v12.7L9 17.2l6 2.3 5.5-2.3V4.5L15 6.8z"/><path d="M9 4.5v12.7M15 6.8v12.7"/></svg>
+      </button>
+      <button class="iconbtn" id="searchBtn" title="Reference lookup (/)" aria-label="Open reference lookup">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="6"/><path d="m15.5 15.5 4 4"/></svg>
+      </button>
+      <span class="counter" id="chapCount">01 / 15</span>
+    </div>
+  </header>
+
+  <button class="navtoggle" id="navToggle" aria-expanded="false" aria-controls="sidebar">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    <span>Journey</span>
+  </button>
+
+  <aside class="sidebar" id="sidebar" aria-label="Journey navigation">
+    <div class="sidebar__scroll" id="sidebarScroll"></div>
+    <div class="sidebar__foot" id="sidebarFoot"></div>
+  </aside>
+
+  <main class="main" id="main" tabindex="-1">
+    <div class="reader" id="reader"></div>
+  </main>
+
+  <footer class="footbar">
+    <button class="navbtn" id="prevBtn">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 6l-6 6 6 6"/></svg>
+      <span id="prevLabel">Previous</span>
+    </button>
+    <div class="footbar__mid" id="stepRail" aria-label="Section progress"></div>
+    <button class="navbtn navbtn--primary" id="nextBtn">
+      <span id="nextLabel">Continue</span>
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 6l6 6-6 6"/></svg>
+    </button>
+  </footer>
+</div>
+
+<div class="overlay" id="overlay" hidden>
+  <div class="overlay__panel" role="dialog" aria-modal="true" aria-labelledby="overlayTitle" id="overlayPanel">
+    <div class="overlay__head">
+      <h2 id="overlayTitle">Model map</h2>
+      <button class="iconbtn" id="overlayClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="overlay__body" id="overlayBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="content/model.js"></script>
+<script src="content/example.js"></script>
+<script src="content/chapters-a.js"></script>
+<script src="content/chapters-b.js"></script>
+<script src="content/chapters-c.js"></script>
+<script src="content/book.js"></script>
+<script src="js/state.js"></script>
+<script src="js/blocks.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
