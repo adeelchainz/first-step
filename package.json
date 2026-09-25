@@ -1,0 +1,16 @@
+{
+  "name": "squid-backlog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The Squid product backlog, and a small server so a team shares one copy of it.",
+  "type": "module",
+  "main": "squid-server.mjs",
+  "scripts": {
+    "start": "node squid-server.mjs",
+    "dev": "node squid-server.mjs --port 8787"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}

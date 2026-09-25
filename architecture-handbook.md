@@ -14,10 +14,10 @@ self-contained: no network, no dependencies, no tracking.
 
 Start with **“I have a new project”**, follow the book in order, and finish with a defensible
 architecture, a system design, documented decisions, diagrams, standards and review evidence.
-Then use Part XI to evolve that architecture safely.
+Then use Part XIII to evolve that architecture safely.
 
-If you have an **existing system**, start at Chapter 2 (the two entry modes), then go to Part XI
-and borrow from Parts VII and VIII as the change requires.
+If you have an **existing system**, start at Chapter 2 (the two entry modes), then go to Part XIII
+and borrow from Parts IX and X as the change requires.
 
 Every stage teaches four things, and that pattern is non-negotiable:
 
@@ -129,18 +129,20 @@ the harvest is known at Friday 06:00, and money moves in between.**
 ## Contents
 
 - **Part I — Foundations** · 1 What Is Architecture? · 2 The Architecture Lifecycle · 3 Architectural Thinking
-- **Part II — Drivers** · 4 Understanding the Problem · 5 Architectural Drivers · 6 Constraints, Assumptions & Unknowns
-- **Part III — Universal Architecture Principles** · 7 Principles of Good Architecture · 8 Applying Principles Without Becoming Dogmatic
-- **Part IV — Architecture Lenses** · 9 The Lens Model · 10 Engineering · 11 Product & Business · 12 UX · 13 Developer Experience · 14 Security · 15 Data · 16 Reliability · 17 Performance · 18 Operations · 19 Cost, Compliance & Accessibility · 20 Cross-Lens Review
-- **Part V — From Principles to Standards** · 21 Principles → Standards · 22 Architecture Standards · 23 Patterns & Reference Architectures
-- **Part VI — Architecture Initialization** · 24 Starting a New Project · 25 Establishing System Context · 26 Establishing the Initial Architecture · 27 Architecture Baseline · 28 Architecture Baseline Gate
-- **Part VII — Architectural Decision-Making** · 29 What Is an Architectural Decision? · 30 Decision Framework · 31 Architecture Decision Records · 32 Evidence, Experiments & Spikes
-- **Part VIII — System Design** · 33 From Architecture to System Design · 34 Designing Components · 35 API & Contract Design · 36 Data Design · 37 Workflow & Sequence Design · 38 State & Event Design · 39 Security Design · 40 Runtime & Deployment Design
-- **Part IX — Architecture Documentation** · 41 Documentation as a System · 42 Document Types · 43 How to Write Architecture Documents · 44 Diagramming · 45 How to Draft a Diagram · 46 Diagram Quality
-- **Part X — Architecture Review** · 47 Reviewing Architecture · 48 Review Checklist · 49 Architecture Gates
-- **Part XI — Architecture Evolution** · 50 Architecture Impact · 51 Architecture Debt · 52 Evolving the Baseline
-- **Part XII — Complete Worked Example** · 53 Farm Commerce Platform, End to End
-- **Part XIII — The Practitioner Toolkit** · 54 Templates · 55 Checklists · 56 Reference
+- **Part II — The Architecture Model** · 4 Depth Is Not the Whole Architecture · 5 Architecture Depth — L0 to L4 · 6 The Architecture Views · 7 Depth × Views · 8 Runtime & Behavioural Architecture
+- **Part III — Architecture in Practice** · 9 Architectural Patterns in Practice · 10 The Module Architecture Contract · 11 The Architecture Artifact Map · 12 The Capability Architecture Loop · 13 Architecture Completeness · 14 The Architecture Process
+- **Part IV — Drivers** · 15 Understanding the Problem · 16 Architectural Drivers · 17 Constraints, Assumptions & Unknowns
+- **Part V — Universal Architecture Principles** · 18 Principles of Good Architecture · 19 Applying Principles Without Becoming Dogmatic
+- **Part VI — Architecture Lenses** · 20 The Lens Model · 21 Engineering · 22 Product & Business · 23 UX · 24 Developer Experience · 25 Security · 26 Data · 27 Reliability · 28 Performance · 29 Operations · 30 Cost, Compliance & Accessibility · 31 Cross-Lens Review
+- **Part VII — From Principles to Standards** · 32 Principles → Standards · 33 Architecture Standards · 34 Patterns & Reference Architectures
+- **Part VIII — Architecture Initialization** · 35 Starting a New Project · 36 Establishing System Context · 37 Establishing the Initial Architecture · 38 Architecture Baseline · 39 Architecture Baseline Gate
+- **Part IX — Architectural Decision-Making** · 40 What Is an Architectural Decision? · 41 Decision Framework · 42 Architecture Decision Records · 43 Evidence, Experiments & Spikes
+- **Part X — System Design** · 44 From Architecture to System Design · 45 Designing Components · 46 API & Contract Design · 47 Data Design · 48 Workflow & Sequence Design · 49 State & Event Design · 50 Security Design · 51 Runtime & Deployment Design
+- **Part XI — Architecture Documentation** · 52 Documentation as a System · 53 Document Types · 54 How to Write Architecture Documents · 55 Diagramming · 56 How to Draft a Diagram · 57 Diagram Quality
+- **Part XII — Architecture Review** · 58 Reviewing Architecture · 59 Review Checklist · 60 Architecture Gates
+- **Part XIII — Architecture Evolution** · 61 Architecture Impact · 62 Architecture Debt · 63 Evolving the Baseline
+- **Part XIV — Complete Worked Example** · 64 Farm Commerce Platform, End to End
+- **Part XV — The Practitioner Toolkit** · 65 Templates · 66 Checklists · 67 Reference
 
 ---
 ---
@@ -261,11 +263,17 @@ on most teams, several engineers, continuously. What matters is whether the deci
 - Explain why a diagram is a representation and not the architecture
 - Use the vocabulary table to settle a definitional argument in a review
 
-**Related:** Ch. 2 Lifecycle · Ch. 3 Architectural Thinking · Ch. 5 Drivers · Ch. 29 Decisions · Ch. 41 Documentation
+**Related:** Ch. 2 Lifecycle · Ch. 3 Architectural Thinking · Ch. 16 Drivers · Ch. 40 Decisions · Ch. 52 Documentation
 
 ---
 
 ## Chapter 2 — The Architecture Lifecycle
+
+> **The activity list and the loop.** The lifecycle below describes the *stages* of
+> architecture work. Chapter 14 states the same work as seventeen activities and a
+> nine-station loop — Understand, Model, Decide, Design, Validate, Baseline, Implement,
+> Observe, Evolve — which is the form to reach for when someone wants architecture
+> scheduled as a phase.
 
 > Architecture has two entry points: you are establishing one, or you are assessing the impact of
 > a change on one. Everything in this book hangs off that distinction.
@@ -301,12 +309,12 @@ change is asked one question — *does this affect the architecture?* — and th
 **A — New system → establish architecture.** No baseline exists. Understand the problem, identify
 drivers and constraints, choose principles, shape boundaries, decide the consequential questions,
 record enough that delivery can start safely.
-*Route:* Parts II → VI → VII, then the baseline gate in Chapter 28.
+*Route:* Parts IV → VIII → IX, then the baseline gate in Chapter 39.
 
 **B — Existing system → assess architectural impact.** A baseline exists, explicitly or implicitly.
 Determine whether a proposed change alters structure, boundaries, ownership, trust or quality
 attributes — and if so, run a scoped version of the same process.
-*Route:* Part XI, borrowing from Parts VII and VIII as needed.
+*Route:* Part XIII, borrowing from Parts IX and X as needed.
 
 > **The most common lifecycle error.** Treating every change as mode A (re-architecting on every
 > ticket), or as neither (no impact assessment at all, until the boundary has quietly disappeared).
@@ -316,7 +324,7 @@ attributes — and if so, run a scoped version of the same process.
 | Stage | You produce | You stop when |
 |---|---|---|
 | Initialization | Input brief, drivers, constraints, candidate principles, relevant lenses | The problem is understood well enough to shape a boundary |
-| Baseline | Context, major structure, decisions, assumptions, open questions | The baseline gate passes (Ch. 28) |
+| Baseline | Context, major structure, decisions, assumptions, open questions | The baseline gate passes (Ch. 39) |
 | System design | Component, API, data, workflow, security, runtime design | A team can implement without inventing architecture |
 | Implementation | Working software plus guardrails | The capability works and the guardrails hold |
 | Change | A proposal, and an impact answer | You know whether architecture is affected |
@@ -370,7 +378,7 @@ To reverse this we would have to ..........
 ```
 
 If the last line reads “rewrite the system”, you are looking at an architectural decision and it
-needs a record (Chapter 31).
+needs a record (Chapter 42).
 
 ### ✓ Checkpoint
 
@@ -382,14 +390,2319 @@ needs a record (Chapter 31).
 ---
 ---
 
-# PART II — DRIVERS
+# PART II — THE ARCHITECTURE MODEL
+
+*L0 to L4 describe how deeply we have described the system. They do not describe every dimension of it. This part separates depth from view, and makes runtime behaviour a first-class part of the architecture rather than a diagram someone drew once.*
+
+---
+
+## Chapter 4 — Depth Is Not the Whole Architecture
+
+> L0 to L4 is one axis — structural decomposition. Architecture also has behaviour, patterns, data, deployment, cross-cutting guarantees, decisions and evidence. Those are views, not deeper levels.
+
+**Why this matters.** Teams that treat L0-L4 as the complete model produce architectures that are structurally accurate and behaviourally unknown. They can tell you every module and not one failure path.
+
+A team finishes L4. Every module is named, every folder is placed, the dependency rule is enforced in CI. Then the first incident arrives and nobody can say what happens when the outbox relay dies halfway through a drain.
+
+Nothing was done wrong. The structural model was complete. The problem is that structure was mistaken for the whole architecture, and the levels invited the mistake: a numbered sequence ending at 4 looks finished at 4.
+
+> **The correction.** **L0-L4 describe architectural depth — structural decomposition. They do not describe every dimension of architecture.** Depth answers *how finely have we decomposed this*. It never answers *how does it behave*, *what does it guarantee*, or *how do we know*.
+
+The fix is not another level. There is no L5. Adding one would repeat the mistake in a more expensive form: behaviour is not a finer decomposition of structure, and deployment is not a finer decomposition of behaviour. They are *different questions about the same system*, and different questions belong on a different axis.
+
+### The model
+
+**Context** — What is the system, who uses it, what surrounds it?
+
+**Structure** — What exists and how is it decomposed?
+  - L0 Context
+  - L1 Containers
+  - L2 Components
+  - L3 Detailed design
+  - L4 Implementation design
+
+**Behaviour / Runtime** — How does it behave when something actually happens?
+
+**Architectural Patterns** — What established approach is being used, and at what cost?
+
+**Data** — What data exists, who owns it, how does it move?
+
+**Deployment / Infrastructure** — Where does it run?
+
+**Cross-Cutting Concerns** — What guarantees and constraints apply across the whole system?
+  - Security
+  - Reliability
+  - Performance
+  - Scalability
+  - Observability
+  - Operations
+  - UX / DX where relevant
+
+**Decisions** — Why was it designed this way?
+
+**Validation / Evidence** — How do we know the architecture actually satisfies its intent?
+
+Read it this way. **Structure** is the only branch with levels, because structure is the only dimension that decomposes. Every other branch is a view: a complete perspective on the whole system, examined at whatever depth the risk justifies.
+
+*What each dimension answers*
+
+```text
+Structure      "What exists and how is it decomposed?"
+Behavior       "How does it behave at runtime?"
+Patterns       "What established approach is being used?"
+Data           "What data exists, who owns it, how does it move?"
+Deployment     "Where does it run?"
+Cross-cutting  "What guarantees apply across the system?"
+Decisions      "Why was it designed this way?"
+Validation     "How do we know it satisfies its intent?"
+```
+
+### Why the mistake is so easy to make
+
+**Levels are numbered and views are not.** A numbered ladder implies completion at the top. A set of views implies a judgement about which ones matter, and judgement is harder than counting. Teams reach for the ladder.
+
+**Structure is the easiest dimension to draw.** Boxes and lines are quick, look authoritative, and rarely provoke disagreement. A failure-flow diagram forces someone to admit what happens at 3am, which is a longer meeting.
+
+**Tools model structure and nothing else.** Most diagramming tools have a component shape and no concept of a guarantee, a trust boundary or an idempotency requirement. What the tool cannot hold, the architecture tends not to contain.
+
+**Structure survives review.** A reviewer can confirm a module list without knowing the domain. Confirming that the failure behaviour is right requires understanding what the business can tolerate — so reviews drift toward the part that is easy to check.
+
+**What good looks like**
+
+- Someone can say which views are deliberately shallow, and why
+- Behaviour is described for the capabilities where it is not obvious
+- Every cross-cutting guarantee has an owner
+- The record says what is claimed and what is demonstrated
+- Depth varies across the system in proportion to risk
+
+**What weak looks like**
+
+- A complete L2 and no failure behaviour anywhere
+- Every module documented to the same depth regardless of consequence
+- “The architecture” means the container diagram
+- Security appears once, as a box labelled Auth
+- Nobody can name what has been validated versus asserted
+
+### What this does not change
+
+- **L0-L4 stay exactly as they are.** They are the right model for structural depth and this part preserves them intact.
+- **There is no L5.** Behaviour, patterns, deployment, data and decisions do not become another level.
+- **Nothing becomes mandatory.** Views are dimensions you can examine, not documents you must produce.
+- **The lifecycle is unchanged.** Discover, frame, shape, decide, design, document, review, evolve — the same loop, now with a clearer answer to “review *what*”.
+
+> **The failure this prevents.** An architecture that is structurally complete and behaviourally unknown passes every review it is given, because reviewers are shown structure. It then fails in production along a dimension nobody examined. The most expensive incidents are almost never caused by the wrong module boundary; they are caused by an unexamined failure path, an unowned guarantee, or a decision nobody recorded.
+
+**You should now be able to**
+
+- Explain why depth and views are different axes without reaching for an L5
+- Name the eight dimensions and the question each answers
+- Diagnose an architecture that is structurally complete and behaviourally unknown
+- Decide which views deserve depth in a given system
+
+*Related: Architecture Depth, L0 to L4 · The Architecture Views · Depth × Views · What Is Architecture? · Documentation as a System*
+
+---
+
+## Chapter 5 — Architecture Depth — L0 to L4
+
+> Five levels of structural decomposition, each answering a different set of questions. L4 is implementation design, not a mandatory artifact for every part of the system.
+
+**Why this matters.** Depth is the axis teams already understand. Stated precisely, it stops being a documentation quota and becomes a decision about where detail earns its cost.
+
+Each level answers questions the level above cannot. Descending is not a formality; it is a commitment of effort that should be justified by uncertainty, complexity, consequence or risk.
+
+#### L0 — Context
+
+*The system as one box*
+
+Answers:
+- Who interacts with the system?
+- What is inside and outside it?
+- What external systems exist?
+- What are the major boundaries?
+
+**Artifacts.** System Context Diagram · External systems table · Explicit out-of-scope list
+
+**Squid at this level.** Squid is one box. Around it: members, workspace admins, guests, the identity provider, object storage, the mail provider, the payment provider, the calendar providers. Task lives inside; e-mail delivery does not.
+
+**When this level is enough.** L0 is enough when the argument is about scope, ownership or who is affected — not about how anything is built.
+
+**What going no further costs.** Skipping L0 is how teams end up arguing about components while disagreeing about what the system is for.
+
+#### L1 — Containers
+
+*Major deployable or independently meaningful building blocks*
+
+Answers:
+- What runs as its own thing?
+- Which of those can be deployed independently?
+- What stores state?
+- What talks to what, over which protocol?
+
+**Artifacts.** Container diagram · Container responsibility table · Protocol and direction per edge
+
+**Squid at this level.** Next.js app (SSR + route handlers + server actions), the worker fleet, the realtime service, MongoDB Atlas, Redis, object storage, Atlas Search. The Task module lives inside the Next.js app and the worker, not in a container of its own.
+
+**When this level is enough.** L1 is enough when the question is deployment, scaling, failure isolation or operational ownership.
+
+**What going no further costs.** Teams that stop at L1 ship a diagram of boxes nobody disagrees with and a codebase nobody can navigate.
+
+#### L2 — Components
+
+*What lives inside a container, and who owns what*
+
+Answers:
+- What major components exist inside each container?
+- What responsibility does each own?
+- How are responsibilities separated?
+- Which components depend on which, and in which direction?
+
+**Artifacts.** Component diagram per container · Module responsibility table · Dependency direction rules
+
+**Squid at this level.** Inside the Next.js app: identity, workspace, work (Task), docs, search, notify, files, policy, gateway. Work depends on identity and policy; nothing depends on work except the notification consumers, and those consume events rather than calling in.
+
+**When this level is enough.** L2 is enough when the question is ownership, coupling or where a change belongs.
+
+**What going no further costs.** L2 without dependency direction is a folder listing with rounded corners.
+
+#### L3 — Detailed system design
+
+*How it actually works when something happens*
+
+Answers:
+- How does a request flow?
+- What are the API contracts?
+- What are the data models?
+- How does state change?
+- What happens when something fails?
+- What security controls apply?
+- What transactions and consistency rules exist?
+- What workflows exist?
+
+**Artifacts.** Sequence diagrams · API contracts · Data models · State diagrams · Workflow diagrams · Data-flow diagrams · Failure-flow diagrams
+
+**Squid at this level.** Assign a task: server action → Zod → policy check → gateway with a version predicate → Mongo transaction writing task + outbox → worker drains outbox → notification fan-out. Conflict returns 409 and the client refetches. The AssignTask contract, the task document shape and the task state machine all belong here.
+
+**When this level is enough.** L3 is required wherever behaviour is non-obvious, money or safety is involved, or the failure path is not the happy path with an error message bolted on.
+
+**What going no further costs.** Skipping L3 is the single most common cause of "the architecture was fine, the system was not".
+
+#### L4 — Implementation design
+
+*Modules, schemas, interfaces, queries, configuration*
+
+Answers:
+- What modules, functions and interfaces exist?
+- What schemas are used?
+- What repositories and queries exist?
+- What commands and events exist?
+- What configuration is required?
+- How are implementation boundaries enforced?
+
+**Artifacts.** Module structure · Schema definitions · Interface signatures · Query and index list · Event catalogue · Dependency guardrail configuration
+
+**Squid at this level.** src/modules/work/{db,domain,policy,actions,ui}, the task schema with { workspaceId, assigneeId, updatedAt } compound index, assignTask(cmd) returning Result, the TaskAssigned event shape, and the import rule in architecture/deps.json that fails CI when docs imports work/db.
+
+**When this level is enough.** L4 is written where uncertainty, risk or consequence justify it — not everywhere.
+
+**What going no further costs.** Mandatory L4 everywhere produces documentation nobody reads and nobody updates, which is worse than none.
+
+### Progressive elaboration
+
+The single most damaging misreading of a depth model is that every part of the system must reach the bottom. It must not. Some capabilities deserve a sequence diagram, a data model and a failure flow. Others deserve a sentence. The difference is not seniority or taste — it is **risk-weighted**, and the weights can be named.
+
+*What justifies more depth — walk this before writing L3 or L4*
+
+| Force | Ask | More depth when | Less depth when |
+|---|---|---|---|
+| Uncertainty | Do we genuinely not know how this will work? | Prototype it, then write L3. | We have built this shape four times. L2 and a paragraph. |
+| Complexity | How many moving parts and interactions? | Multi-step workflow with compensations — L3 sequence and failure flow. | One collection, one form, one query. |
+| Business consequence | What breaks for the business if this is wrong? | Billing, permissions, deletion — design it properly. | An avatar cropper. |
+| Technical risk | Is there a plausible way this collapses under load or change? | Evidence first, then design. | Bounded, replaceable, cheap to redo. |
+| Security risk | Does it cross a trust boundary or touch personal data? | L3 security design is not optional. | Internal read of non-sensitive data. |
+| Operational risk | Who gets paged, and can they fix it at 3am? | Runbook, signals and failure behaviour before launch. | Fails closed, no state, retried by the user. |
+| Change frequency | How often will this be edited? | Invest in the boundary; document the contract. | Written once, read rarely. |
+| Reversibility | How expensive is it to undo? | Slow down: ADR with evidence. | One pull request to reverse — decide and move. |
+
+> **The depth rule.** Document to the depth at which *the next person would otherwise make an expensive mistake*. Above that line you are under-describing. Below it you are producing artifacts that will go stale faster than they are read — which is worse than nothing, because stale documents are trusted.
+
+**What good looks like**
+
+- Depth varies visibly across the system
+- The deepest documentation sits on the riskiest capability
+- Someone can say why a given module has no L4
+- L3 exists everywhere behaviour is non-obvious
+- Each artifact names who it is for
+
+**What weak looks like**
+
+- Every module documented identically
+- L4 required by policy, produced by obligation, read by nobody
+- Depth decided by who had time
+- The riskiest workflow has the thinnest description
+- Documentation completeness measured by count
+
+**Under-described.** A billing workflow with a container diagram and nothing else. Every engineer who touches it rediscovers the consistency rules, and one of them gets it wrong in a way that takes three weeks to find.
+
+**Over-described.** A settings page with a sequence diagram, a component diagram and an ADR. Six months later the page has changed four times and all three artifacts are wrong, which now makes them dangerous rather than merely useless.
+
+> **Why L4 is optional and L3 usually is not.** L4 describes implementation, and the implementation is present in the code where it can be read directly. L3 describes behaviour that spans components — sequences, consistency, failure branches — and that is *nowhere* readable in full. It exists only in the heads of the people who built it. That is why skipping L3 is the expensive omission and skipping L4 usually is not.
+
+**You should now be able to**
+
+- State what each level answers and which artifact carries it
+- Justify the depth chosen for a capability using named forces
+- Explain why L4 is not required everywhere
+- Identify the under-described capability in your own system
+
+*Related: Depth Is Not the Whole Architecture · The Architecture Views · From Architecture to System Design · Designing Components*
+
+---
+
+## Chapter 6 — The Architecture Views
+
+> Twelve views of one system. Each asks a different set of questions, is answered by different artifacts, and is validated differently.
+
+**Why this matters.** Same architecture, different dimension. A team that can name the views can name what it has not examined — which is the only way to be honest about what a baseline covers.
+
+A view is not a document type and not a diagram. It is a standing set of questions about the whole system. The artifacts exist to answer them; when the questions change, the artifacts should.
+
+#### Context
+
+*What is the system, who uses it, and what surrounds it?*
+
+`Purpose → Actors → Boundary → External systems → Out of scope`
+
+Questions it asks:
+- What problem does the system exist to solve?
+- Who are the actors, human and machine?
+- What is inside the boundary and what is outside?
+- Which external systems do we depend on, and who owns them?
+- What is explicitly out of scope?
+
+**Artifacts.** System Context Diagram · External systems table
+
+**Squid.** Squid is a workspace collaboration system for teams. Actors: member, workspace admin, guest, integration client. Externals: identity provider, object storage, mail, payments, calendar. Out of scope: running e-mail infrastructure, being a CRM.
+
+**Validated by.**
+- Every actor names a need, not a job title.
+- Every external names an owner, a failure behaviour and an exit cost.
+- Someone outside the team can read it and correctly say what the system does not do.
+
+**How it is faked.** A context diagram that shows internal components. That is L1 wearing L0's clothes.
+
+---
+
+#### Structure
+
+*What exists and how is it decomposed?*
+
+`Building blocks → Ownership → Dependency direction → Boundaries → Deliberate non-separation`
+
+Questions it asks:
+- What are the major building blocks?
+- What does each own?
+- Which direction do dependencies point?
+- Where are the boundaries, and what is allowed to cross them?
+- What is deliberately not separated?
+
+**Artifacts.** Container diagram · Component diagram · Module responsibility table · Dependency rules
+
+**Squid.** A modular monolith in Next.js plus a worker fleet. Nine modules with explicit owners. Work owns tasks; policy owns authorisation; gateway owns all database access. No module reaches into another module's db folder — CI enforces it.
+
+**Validated by.**
+- Every block has exactly one owner and one sentence of responsibility.
+- No cycles in the dependency graph.
+- A new joiner can place a change in the right module without asking.
+
+**How it is faked.** Boxes named after teams or after layers with no responsibility statement. "Services" is not a responsibility.
+
+---
+
+#### Behaviour
+
+*How does the system behave at runtime when something actually happens?*
+
+`Triggers → Components → Interactions → State → Data → Events → Failures → Recovery`
+
+Questions it asks:
+- What triggers the behaviour?
+- Which component receives it first?
+- Which boundaries are crossed, and in which order?
+- Which components participate?
+- Which data changes?
+- Which events are emitted?
+- Which external systems are called?
+- What is synchronous and what is asynchronous?
+- What happens on success?
+- What happens on failure, at each step?
+- What is retried, and what is idempotent?
+- What happens if a dependency is unavailable?
+- What happens if the request is duplicated?
+- What happens if processing partially succeeds?
+
+**Artifacts.** Sequence diagram · Workflow diagram · State diagram · Event-flow diagram · Data-flow diagram · Failure-flow diagram
+
+**Squid.** Assign a task: server action receives the command, Zod validates shape, policy decides, gateway writes task and outbox row in one transaction, worker drains the outbox at-least-once, notify fans out, realtime pushes the board update. Duplicate delivery is absorbed by the notification idempotency key.
+
+**Validated by.**
+- Every step names the boundary it crosses.
+- Every step has a failure branch, or an explicit note that it cannot fail.
+- The sequence has been executed once against the real system, not only drawn.
+
+**How it is faked.** Knowing a module exists is not knowing how the system behaves. A component diagram cannot tell you what happens when the outbox drain dies halfway.
+
+---
+
+#### Patterns
+
+*What established architectural approach is being used, and what does it cost?*
+
+`Problem → Intent → Structure → Runtime behaviour → Benefits → Costs → When not to use`
+
+Questions it asks:
+- What recurring problem is this solving?
+- Which pattern fits, and which almost fits?
+- What does the pattern cost us here?
+- What does it forbid?
+- When would we abandon it?
+- Are we applying it because it fits, or because it is familiar?
+
+**Artifacts.** Pattern specification · ADR recording the selection · Reference implementation
+
+**Squid.** Modular monolith + application service + repository behind a gateway + domain events + transactional outbox + idempotent consumers + cache-aside for board reads. Not used: CQRS with separate read models, event sourcing, sagas outside billing.
+
+**Validated by.**
+- Each pattern names the problem it was chosen for.
+- Each pattern names its cost in this system, not in the abstract.
+- At least one pattern has been rejected in writing.
+
+**How it is faked.** Pattern cargo-culting: adopting CQRS because a conference talk used it, then discovering you own two models and one team.
+
+---
+
+#### Data
+
+*What data exists, who owns it, and how does it move?*
+
+`Ownership → Sources of truth → Schema → Lifecycle → Consistency → Transactions → Replication → Retention → Access`
+
+Questions it asks:
+- Which module is the source of truth for each entity?
+- What is the schema, and who may change it?
+- What is the lifecycle: created, changed, archived, deleted, purged?
+- Where are the transaction boundaries?
+- What consistency does each workflow need?
+- What is replicated, cached or duplicated, and how is it invalidated?
+- What is retained, for how long, and under what obligation?
+- Who may read it?
+
+**Artifacts.** Data architecture · Entity model · Transaction boundary map · Retention and deletion policy · Migration plan
+
+**Squid.** 21 collections, each with exactly one owning module. Tasks and the outbox share a transaction. Board reads are eventually consistent by up to 2 seconds and say so in the UI. Soft delete plus a 30-day TTL purge; deletion trace is an open question.
+
+**Validated by.**
+- Every collection names one owning module.
+- Every transaction boundary is deliberate and written down.
+- Deletion has been traced end to end, including caches, search and backups.
+
+**How it is faked.** Two modules writing the same collection "temporarily". That is not a data model, it is a future incident.
+
+---
+
+#### Deployment
+
+*Where does it run?*
+
+`Topology → Environments → Networking → Scaling units → Configuration → Deploy → Rollback → Recovery`
+
+Questions it asks:
+- What is the runtime topology?
+- Which environments exist, and how do they differ?
+- What are the scaling units and their triggers?
+- How is configuration and secret material supplied?
+- How is it deployed, and how is it rolled back — including data?
+- What are the recovery objectives, and when were they last tested?
+
+**Artifacts.** Deployment diagram · Environment table · Runbook · Rollback plan
+
+**Squid.** Vercel for the Next.js app, a container platform for workers and realtime, Atlas for MongoDB, managed Redis. Four environments. Workers scale on queue depth; realtime scales on connections. Rollback is a redeploy plus a backwards-compatible migration window of one release.
+
+**Validated by.**
+- Rollback has been performed, not merely written down.
+- Recovery objectives have a drill date.
+- No environment differs from production in a way nobody can name.
+
+**How it is faked.** A deployment diagram that does not show where state lives is a picture of the easy half.
+
+---
+
+#### Security *(cross-cutting)*
+
+*Who is trusted with what, and what stops the rest?*
+
+`Trust boundaries → Identity → Authentication → Authorisation → Data access → Secrets → Threats → Controls → Validation`
+
+Questions it asks:
+- Where are the trust boundaries?
+- How is identity established and propagated?
+- Where are authorisation decisions made, and by which component?
+- How is tenant isolation enforced?
+- How are secrets stored and rotated?
+- What are the abuse cases?
+- What does each control do when it fails?
+- What is audited?
+
+**Artifacts.** Security design · Threat model · Trust boundary diagram · Audit requirements
+
+**Squid.** Session cookie terminated at the Next.js edge; every gateway call carries a workspace predicate; policy decides and denies by default; presigned upload URLs expire in 15 minutes; ten abuse cases with a preventive or detective control each.
+
+**Validated by.**
+- Every trust boundary names what is checked when it is crossed.
+- Every control states what happens when it fails — and the answer is not "requests continue".
+- Cross-tenant access has been tested, not assumed.
+
+**How it is faked.** Authorisation scattered across route handlers. Ten places to change, nine that will be missed.
+
+---
+
+#### Reliability *(cross-cutting)*
+
+*What does the system promise when parts of it are broken?*
+
+`Failure modes → Degradation → Retry → Idempotency → Isolation → Recovery`
+
+Questions it asks:
+- What are the failure modes of each dependency?
+- What degrades and what stops?
+- What is retried, and with what backoff?
+- What is idempotent, and what is not?
+- What is the blast radius of each failure?
+- What is the recovery path, and who runs it?
+
+**Artifacts.** Failure-mode table · Failure-flow diagram · Runbook · Recovery objectives
+
+**Squid.** Ten dependencies with a degraded and an unavailable behaviour each. Search down means the board still loads and search shows a banner. Realtime down means collaboration falls back to save-and-refresh. Mail down means notifications queue rather than vanish.
+
+**Validated by.**
+- Every dependency has a written degraded behaviour.
+- At least one failure has been injected in a non-production environment.
+- Nothing in the list degrades to "unknown".
+
+**How it is faked.** "We retry" is not a reliability model. Retry without idempotency is duplication with extra steps.
+
+---
+
+#### Performance *(cross-cutting)*
+
+*How fast, at what size, and what happens beyond it?*
+
+`Load model → Targets → Bottlenecks → Caching → Growth → Headroom`
+
+Questions it asks:
+- What is the load today and the load assumed?
+- Which operations have a latency target, and why that number?
+- Where is the bottleneck, and how do we know?
+- What is cached, and how is it invalidated?
+- What grows without bound?
+- What breaks first when volume doubles?
+
+**Artifacts.** Quality attribute table with measures · Benchmark or spike evidence · Capacity model
+
+**Squid.** Board view p95 under 400ms at 5,000 tasks per workspace. Document sync convergence under 200ms for 20 concurrent editors. Search p95 under 700ms. The capacity and cost model behind these numbers does not yet exist — recorded as a gap.
+
+**Validated by.**
+- Every target has a measure and a measurement point.
+- At least one target has evidence, not an estimate.
+- The growth assumption is written down with a date to revisit.
+
+**How it is faked.** Targets with no measurement point are aspirations. "Fast" is not a target.
+
+---
+
+#### Operations *(cross-cutting)*
+
+*How is it observed, deployed, recovered and maintained?*
+
+`Signals → Alerts → Runbook → Deployment → Ownership → Cost`
+
+Questions it asks:
+- What signals exist, and which of them page a human?
+- What does the first responder do in the first five minutes?
+- How is a release deployed and reverted?
+- What routine work does this design create forever?
+- Who owns it at 3am?
+- What is the cost of running it?
+
+**Artifacts.** Operational model · Signal and alert list · Runbook · On-call ownership
+
+**Squid.** Ten signals with thresholds, five runbook first-actions, deployment and rollback per component. Every asynchronous path added during refinement created an operational obligation and the obligation is named.
+
+**Validated by.**
+- Every alert has a first action.
+- Every asynchronous path has a backlog signal.
+- The on-call person was in the review.
+
+**How it is faked.** Architecture that is elegant to draw and unowned to run. Every queue you add, somebody watches forever.
+
+---
+
+#### Decisions
+
+*Why was it designed this way, and what would change our mind?*
+
+`Problem → Drivers → Options → Criteria → Evidence → Decision → Consequences → Rejected`
+
+Questions it asks:
+- What was the problem, in its own terms?
+- What drove the choice?
+- What options were genuinely considered?
+- On what criteria were they compared?
+- What evidence was gathered?
+- What are the consequences, good and bad?
+- What was rejected and why?
+- What would make us revisit this?
+
+**Artifacts.** ADR · Assumption register · Evidence and spikes
+
+**Squid.** 26 ADRs. ADR-001 modular monolith over microservices. ADR-007 outbox over dual write. ADR-012 CRDT over operational transform. Six were written during refinement when design work exposed a decision nobody had made.
+
+**Validated by.**
+- Every consequential decision has a record.
+- Every record names a rejected option with the reason.
+- Evidence is proportional to consequence — a benchmark for the expensive ones.
+
+**How it is faked.** ADRs written after the code, to describe what was already built. That is minutes, not decisions.
+
+---
+
+#### Validation
+
+*How do we know the architecture actually satisfies its intent?*
+
+`Claims → Evidence → Experiments → Guardrails → Review → Open risk`
+
+Questions it asks:
+- Which claims are asserted and which are demonstrated?
+- What evidence exists for each quality attribute?
+- What was prototyped, measured or injected?
+- Which guardrails are automated?
+- What has been reviewed, by whom, and with what standing?
+- What remains unproven, and what does that block?
+
+**Artifacts.** Evidence log · Spike results · Guardrail configuration · Review record · Baseline gate record
+
+**Squid.** The dependency guardrail fails CI on a forbidden import. The CRDT choice has a spike behind it. The performance targets do not yet have benchmarks. Every review finding so far came from inside the team — the baseline gate is recorded as partial for that reason.
+
+**Validated by.**
+- Each quality attribute states whether it is claimed or demonstrated.
+- Unvalidated claims are visible, not buried.
+- Someone outside the team has reviewed the architecture at least once.
+
+**How it is faked.** A baseline signed off by the people who wrote it, with no evidence attached, is a document, not an architecture.
+
+### Views and lenses are not the same thing
+
+They are closely related and constantly confused. A **view** is a dimension of the architecture itself — it exists whether or not anyone examines it. A **lens** is a perspective a reviewer adopts in order to examine one. Security is both: there is a security view of the system, and there is a security lens someone looks through to interrogate it.
+
+*Same word, different job*
+
+|  | View | Lens |
+|---|---|---|
+| What it is | A dimension of the architecture | A disciplined way of examining it |
+| Exists when | Always — described or not | Only when someone adopts it |
+| Produces | Artifacts: diagrams, contracts, models | Findings, questions, evidence requests |
+| Answers | “What is true of the system here?” | “What would go wrong if nobody asked?” |
+| Fails by | Being left blank | Being owned by only one person |
+| Related chapter | This chapter | Part VI, The Architecture Lens Model |
+
+> **Cross-cutting means every view, not one section.** Security, reliability, performance, scalability, observability and operations are *cross-cutting*: each one has something to say about structure, behaviour, data and deployment. A security section at the end of a document is a confession that security was considered last. The test is simple — if the security content is confined to one chapter, it was not cross-cutting.
+
+### Choosing which views to invest in
+
+1. **Context, structure and decisions are never optional.** A system without these is not described at all.
+2. **Behaviour is required wherever the runtime is not obvious** — which is anywhere that has more than one participant, asynchrony, or money.
+3. **Data is required wherever state has an owner**, which is everywhere, though the depth varies enormously.
+4. **Cross-cutting views are ranked by the drivers.** If availability is the top driver, reliability gets depth; if the product is internal and low-traffic, performance may honestly be a paragraph.
+5. **Validation is required in proportion to consequence.** Cheap to be wrong means an argument suffices; expensive to be wrong means evidence.
+6. **Write down which views you deliberately left shallow.** An undescribed view and a deliberately shallow one look identical in a document and are completely different in a review.
+
+**What good looks like**
+
+- Each view names who owns it
+- Shallow views are marked shallow, with a reason
+- Cross-cutting concerns appear in several views, not one section
+- The views with depth match the ranked drivers
+- Validation states what is proven and what is asserted
+
+**What weak looks like**
+
+- Views nobody has looked at, indistinguishable from views with nothing to say
+- Security as an appendix
+- Performance targets with no measurement point
+- Deployment described without where state lives
+- Decisions recorded after the fact to match the code
+
+**You should now be able to**
+
+- Name the twelve views and the question each answers
+- Distinguish a view from a lens and explain why both are needed
+- Choose the views that deserve depth from the ranked drivers
+- Spot a cross-cutting concern that has been confined to one section
+
+*Related: Depth × Views · The Architecture Lens Model · Cross-Lens Architecture Review · The Architecture Artifact Map*
+
+---
+
+## Chapter 7 — Depth × Views
+
+> The two axes intersect. “What does security look like at L1?” is a better question than either axis can ask alone.
+
+**Why this matters.** Most architecture gaps live in a cell nobody thought to visit — data at L3, operations at L2, validation anywhere.
+
+Depth and views are independent. Crossing them turns a vague instruction — “think about security” — into a specific, answerable question at a specific altitude.
+
+*The two axes*
+
+```text
+                         ARCHITECTURE VIEWS
+             Context  Structure  Behavior  Data  Security  ...
+                │         │         │       │       │
+   L0 Context   ·         ·         ·       ·       ·
+   L1 Container ·         ·         ·       ·       ·
+   L2 Component ·         ·         ·       ·       ·
+   L3 Design    ·         ·         ·       ·       ·
+   L4 Impl.     ·         ·         ·       ·       ·
+
+   Each cell is a question somebody should be able to answer —
+   or deliberately decline to.
+```
+
+**Context**
+
+| Level | What this view looks like at that depth |
+|---|---|
+| L0 | This view IS L0. One box, the actors around it, the external systems it touches. |
+| L1 | Which container each external system actually talks to — the mail provider talks to the worker, not the web app. |
+| L2 | Which module owns each external relationship: notify owns mail, files owns object storage. |
+| L3 | The contract with each external: protocol, auth, failure behaviour, SLA, retry and ordering guarantees. |
+| L4 | The adapter implementation, the client configuration, the timeout and the circuit-breaker settings. |
+
+**Structure**
+
+| Level | What this view looks like at that depth |
+|---|---|
+| L0 | The system is one block. Structure at L0 is the boundary itself. |
+| L1 | Containers: web, worker, realtime, database, cache, object storage, search. |
+| L2 | Modules inside each container, their responsibilities and their dependency direction. |
+| L3 | The internal structure of a component: which collaborators, which ports, which error set. |
+| L4 | Directories, interfaces, and the guardrail that enforces the dependency rule in CI. |
+
+**Behaviour**
+
+| Level | What this view looks like at that depth |
+|---|---|
+| L0 | "A member assigns work and the assignee is notified." One sentence, no mechanism. |
+| L1 | Which containers participate: web receives, database persists, worker delivers. |
+| L2 | Which modules participate and in which order: work → policy → gateway → outbox → notify. |
+| L3 | The full sequence with the boundary crossed per step, the failure branch per step, and the compensations. |
+| L4 | The function that owns each hop, the retry policy, the idempotency key, and the test that proves it. |
+
+**Patterns**
+
+| Level | What this view looks like at that depth |
+|---|---|
+| L0 | Rarely visible at L0 — patterns are internal choices, not context. |
+| L1 | Container-level patterns: modular monolith, worker fleet, cache-aside, API gateway. |
+| L2 | Module-level patterns: ports and adapters, repository, application service. |
+| L3 | Behavioural patterns in a workflow: outbox, saga, idempotency, retry with backoff, circuit breaker. |
+| L4 | The concrete implementation of the pattern, and the guardrail that keeps it honest. |
+
+**Data**
+
+| Level | What this view looks like at that depth |
+|---|---|
+| L0 | What classes of data the system holds at all — and which of them are personal. |
+| L1 | Which stores exist and which container writes to each. |
+| L2 | Which module owns which collection. One writer per collection. |
+| L3 | Schema, indexes, transaction boundaries, consistency per workflow, retention and deletion behaviour. |
+| L4 | The schema file, the index definition, the migration with up() and down(), the TTL configuration. |
+
+**Deployment**
+
+| Level | What this view looks like at that depth |
+|---|---|
+| L0 | Which region and which legal jurisdiction the system runs in. |
+| L1 | Which containers run where, and what scales independently. |
+| L2 | Component placement only where it differs from its container. |
+| L3 | Deployment order, migration compatibility windows, rollback behaviour with data. |
+| L4 | The pipeline definition, the health check, the resource limits, the alert threshold. |
+
+**Security**
+
+| Level | What this view looks like at that depth |
+|---|---|
+| L0 | Who is outside the trust boundary: the public internet, guests, integration clients. |
+| L1 | Which container terminates authentication, and which are never reachable from outside. |
+| L2 | One policy module owns authorisation; no module decides for itself. |
+| L3 | The rule set per resource, tenant isolation on every query, abuse cases with controls, fail-closed behaviour. |
+| L4 | The policy function signature, the workspace predicate in the gateway, the test that proves a cross-tenant read returns nothing. |
+
+**Reliability**
+
+| Level | What this view looks like at that depth |
+|---|---|
+| L0 | Which external dependencies the system cannot survive without. |
+| L1 | Which container failures are contained and which are total. |
+| L2 | Which modules fail closed and which degrade. |
+| L3 | Per-dependency behaviour: degraded, unavailable, and what the user sees in each. |
+| L4 | The timeout value, the retry policy, the circuit breaker, the dead-letter queue. |
+
+**Performance**
+
+| Level | What this view looks like at that depth |
+|---|---|
+| L0 | The volume the business expects, stated as a number. |
+| L1 | Which container is expected to be the bottleneck and which scales to absorb it. |
+| L2 | Which module owns the expensive path. |
+| L3 | Query shapes, index coverage, page sizes, payload sizes, concurrency limits. |
+| L4 | The index definition, the projection, the pagination cursor, the load test. |
+
+**Operations**
+
+| Level | What this view looks like at that depth |
+|---|---|
+| L0 | Whether the system is operated by us at all. |
+| L1 | What each container emits and who watches it. |
+| L2 | Which module owns each alert. |
+| L3 | Signal, threshold, first action, escalation. |
+| L4 | The metric name, the dashboard, the alert rule, the runbook entry. |
+
+**Decisions**
+
+| Level | What this view looks like at that depth |
+|---|---|
+| L0 | Decisions about scope and boundary — what the system will never do. |
+| L1 | Decisions about topology: modular monolith over microservices, one database over several. |
+| L2 | Decisions about ownership and dependency direction. |
+| L3 | Decisions about contracts, consistency and failure behaviour. |
+| L4 | Implementation choices — usually not ADR-worthy, and that is the point. |
+
+**Validation**
+
+| Level | What this view looks like at that depth |
+|---|---|
+| L0 | Whether the problem statement was validated with anyone outside the team. |
+| L1 | Whether the topology was load-tested or merely argued. |
+| L2 | Whether the dependency rule is enforced by a tool or by good intentions. |
+| L3 | Whether the workflow was executed, and whether failures were injected. |
+| L4 | Whether the test exists and runs in CI. |
+
+### Using the matrix
+
+**As a review agenda.** Walk the cells that matter for the change in front of you. A reviewer who asks “what does data ownership look like at L3 for this?” gets a precise answer or a precise silence. Both are useful; vague approval is not.
+
+**As a gap finder.** Fill the matrix for your own system and look at the empty cells. Some are empty because nothing needed saying. Others are empty because nobody asked. Only you can tell them apart, and only if you look.
+
+**As a scoping tool.** Before a design session, mark the four or five cells the session is actually about. It prevents the meeting where structure is re-litigated because the failure behaviour was uncomfortable.
+
+**As an onboarding path.** A new engineer reads the top-left cells first — context and structure at L0 and L1 — and descends only into the capability they are about to change. Most onboarding documents have no such path, which is why they are read once.
+
+> **Not a documentation quota.** Sixty cells is not sixty documents. Most systems have real content in perhaps fifteen of them, a sentence in another twenty, and a defensible blank in the rest. The matrix is a *question generator*. Treating it as a checklist to complete is how architecture becomes theatre.
+
+**You should now be able to**
+
+- Ask a precise question by naming a view and a level
+- Find gaps by looking for cells nobody visited
+- Scope a design session to specific cells
+- Explain why an empty cell is not automatically a problem
+
+*Related: The Architecture Views · Architecture Depth, L0 to L4 · Architecture Review Checklist · Architecture Completeness*
+
+---
+
+## Chapter 8 — Runtime & Behavioural Architecture
+
+> Knowing a module exists is not knowing how the system behaves when that module participates in a real scenario.
+
+**Why this matters.** This is the view most often missing and most expensive to be missing. Structure tells you where a change goes; behaviour tells you what breaks at 3am.
+
+A component diagram can tell you that work, policy, gateway and notify exist. It cannot tell you that the outbox relay delivers at-least-once, that the notification consumer is idempotent on eventId, or that a version conflict returns 409 and the client refetches. Those are behavioural facts, and they are architecture.
+
+> **The behavioural test.** Pick any capability. Ask: *what happens, step by step, when it is exercised — and what happens at each step when it fails?* If the team can answer the first half and not the second, the behavioural view does not exist yet, regardless of how complete the structure is.
+
+### The questions this view asks
+
+**Trigger and entry**
+
+- What triggers the behaviour?
+- Which component receives it first?
+- Which boundaries are crossed, in what order?
+
+**Participation**
+
+- Which components participate?
+- Which data changes?
+- Which events are emitted?
+- Which external systems are called?
+
+**Timing**
+
+- What is synchronous?
+- What is asynchronous?
+- What does the user wait for?
+
+**Success**
+
+- What is true afterwards?
+- What invariants hold?
+- What has the user been told?
+
+**Failure**
+
+- What happens on failure at each step?
+- What is retried?
+- What is idempotent?
+- What if a dependency is unavailable?
+
+**Edge cases**
+
+- What if the request is duplicated?
+- What if processing partially succeeds?
+- What if two people do it at once?
+
+### Worked example — assigning a task in Squid
+
+The same example is used from here to the end of this part. It is deliberately ordinary: a member assigns a task to a colleague. There is no distributed transaction, no exotic technology, and nine places where it can go wrong.
+
+| # | From → To | Protocol | What happens | Why here | On failure |
+|---|---|---|---|---|---|
+| 1 | Browser → Server action | HTTPS POST | assignTask command with a client-generated ULID | The action is the module's entry point; the ULID makes a double submit harmless. | Network failure — the client retries with the same ULID and gets the same result. |
+| 2 | Server action → Validation | in-process | Zod parses the command shape | Nothing untrusted reaches the domain. Shape errors are not business errors. | Invalid shape → 400 with field errors. No side effects. |
+| 3 | Server action → Policy | in-process | may(actor, "task.assign", resource) | One module decides permission, so there is one place to change it and one place to audit. | Denied → 403, logged with actor and resource. Policy unavailable → fail closed with a retryable error. |
+| 4 | Application service → Gateway | in-process | load the task aggregate by id with the workspace predicate | Tenant scope is applied by the gateway, never by the caller. | Not found or wrong workspace → 404. The two are indistinguishable on purpose. |
+| 5 | Domain → Domain | in-process | assign() applies the rule: assignee must be an active member; status may not be ARCHIVED | The rule lives with the state it protects. | Rule violation → Invalid, returned as 422 with the rule name. |
+| 6 | Gateway → MongoDB | Mongo wire, one transaction | update task with a version predicate, insert an outbox row | State change and event publication become atomic without a distributed transaction. | Version mismatch → 409, the client refetches and retries. Database failure → rollback; nothing happened, nothing was published. |
+| 7 | Relay → Broker | poll then enqueue | drain undelivered outbox rows, publish TaskAssigned, mark delivered | At-least-once delivery, recoverable after any crash. | Relay dies mid-drain → the row is redelivered; consumers are idempotent. Broker down → the outbox grows and alerts at 500 rows. |
+| 8 | Notify consumer → Mail provider | HTTPS, idempotency key eventId+channel | send the assignment notification | The consumer owns delivery concerns; work does not know mail exists. | Provider error → retry with backoff up to 15 minutes, then dead-letter. Duplicate delivery → absorbed by the key. |
+| 9 | Realtime service → Browser | WSS | push the board update to connected clients | Collaborators see the change without polling. | Realtime down → the write already succeeded; clients fall back to refresh-on-focus and a banner appears. |
+
+Read the failure column rather than the happy path. Each branch is a decision somebody made: 404 rather than 403 for a wrong-tenant read, so the endpoint cannot be used to enumerate; 409 rather than last-write-wins, so no edit is silently discarded; the outbox rather than a direct publish, so a crash between write and publish cannot lose the event.
+
+### Failure behaviour, stated as outcomes
+
+| Failure | Result | Behaviour |
+|---|---|---|
+| Validation failure | 400 | Field errors returned; no side effects; not logged as an error. |
+| Authorization failure | 403 | Denied by policy, audited with actor and resource. The resource is not revealed. |
+| Not found or wrong tenant | 404 | Indistinguishable from absence, deliberately — otherwise 404 versus 403 becomes an enumeration oracle. |
+| Domain rule violation | 422 | The rule name is returned so the UI can explain it in the user's terms. |
+| Concurrent update | 409 | The version predicate matched nothing. The client refetches and reapplies; no data is silently overwritten. |
+| Database failure | 500 | Transaction rolls back. No task change, no outbox row, therefore no event. The system is consistent with having done nothing. |
+| Outbox relay failure | — | The state change stands. Events wait in the outbox and are replayed. Backlog depth alerts at 500 rows. |
+| External dependency failure | — | Retry with backoff inside the consumer, then dead-letter. The user's operation is unaffected because it already committed. |
+| Duplicate request | 200 | The client ULID or the consumer idempotency key absorbs it. One task, one notification. |
+| Partial success across consumers | — | Each consumer succeeds or retries independently. There is no combined state to be half-done, which is the reason the fan-out is asynchronous. |
+
+**What good looks like**
+
+- Every step names the boundary it crosses
+- Every step has a failure branch or an explicit “cannot fail”
+- Synchronous and asynchronous are visually distinct
+- Idempotency is stated where delivery is at-least-once
+- The sequence has been executed, not only drawn
+
+**What weak looks like**
+
+- A happy path with an error box at the end
+- “Errors are logged” as a failure strategy
+- Retry described without idempotency
+- Asynchronous steps drawn as if the user waits for them
+- Partial success unaddressed because it is uncomfortable
+
+### Artifacts that carry this view
+
+*Pick the one that answers the question being asked*
+
+| Artifact | Answers | Use when |
+|---|---|---|
+| Sequence diagram | Which participants, in what order, crossing which boundaries | Behaviour spans components and the order matters |
+| Workflow diagram | What the business process is, independent of components | Product and engineering need the same picture |
+| State diagram | Which states are legal and who may cause a transition | An entity has a lifecycle with rules |
+| Event-flow diagram | What is published and who reacts | Asynchronous fan-out exists |
+| Data-flow diagram | Where data originates, is copied and leaves | Privacy, deletion or replication is in question |
+| Failure-flow diagram | What the system does when a dependency is degraded or gone | There is a designed degradation worth describing |
+
+> **Why this view is skipped.** Because it is the only view that forces specific commitments. A box labelled “Notification Service” commits nobody to anything. “At-least-once delivery, idempotent on eventId, dead-letters after five attempts, backlog alerts at 500” commits somebody to building all four, and to watching the fourth forever. Teams skip behaviour because behaviour is where the work becomes real.
+
+**You should now be able to**
+
+- Describe a capability step by step with the boundary crossed at each step
+- Give every step a failure branch stated as an outcome
+- Choose the right behavioural artifact for a given question
+- Recognise an architecture that is structurally complete and behaviourally empty
+
+*Related: Workflow & Sequence Design · State & Event Design · Reliability & Resilience Lens · Architectural Patterns in Practice · The Module Architecture Contract*
+
+---
+
+# PART III — ARCHITECTURE IN PRACTICE
+
+*Patterns chosen honestly, modules that state what they guarantee, artifacts selected by the question they answer, and a repeatable loop for every capability. This part turns the model into something a team can run on a Tuesday.*
+
+---
+
+## Chapter 9 — Architectural Patterns in Practice
+
+> A pattern is a named trade-off. Every entry here must be usable as an argument against itself.
+
+**Why this matters.** Pattern cargo-culting is the most common way an architecture acquires cost with no corresponding benefit — and it always arrives with good intentions.
+
+Boxes and arrows show what a system is shaped like. Patterns explain *why it has that shape* — and, more usefully, what that shape costs.
+
+> **How to record a pattern.** Pattern → intent → problem it solves → context where it fits → structure → runtime behaviour → benefits → **costs** → risks → **when not to use it** → example → validation. A pattern entry with no cost section and no exclusion is marketing, and it will be cited in a design review as though it were analysis.
+
+#### Layered Architecture  
+`Application shape` · *used in Squid*
+
+**Intent.** Separate concerns into horizontal layers so that policy does not depend on mechanism.
+
+**Problem it solves.** Business rules, persistence and transport get written in the same function and become impossible to test or move.
+
+**Context where it fits.** Almost any application. Cheapest possible structural discipline.
+
+**Structure.** Presentation → application → domain → infrastructure. Dependencies point inward only.
+
+**Runtime behaviour.** A request enters at the outer layer and is translated at each boundary; no layer calls outward.
+
+**Benefits.**
+- Trivial to explain
+- Cheap to enforce with an import rule
+- Makes the domain testable without a database
+
+**Costs.**
+- Adds indirection for genuinely simple operations
+- Tempts teams to create anaemic pass-through layers
+
+**Risks.**
+- Layers that all import each other are not layers, they are folders
+- Mapping fatigue leads people to leak persistence models upward
+
+**When NOT to use it.** Do not layer a script. If there is no domain logic, a route handler talking to a query is the honest design.
+
+**Example.** Squid: ui → actions → domain → gateway. The import rule in architecture/deps.json fails CI when domain imports gateway internals.
+
+**Validation.** A guardrail that fails the build on an outward dependency, plus a domain test suite that runs with no database.
+
+---
+
+#### Modular Monolith  
+`Application shape` · *used in Squid*
+
+**Intent.** Get the boundaries of a distributed system without paying for the network.
+
+**Problem it solves.** Microservices bought early cost distributed transactions, deployment complexity and an operations burden before there is a team to carry it.
+
+**Context where it fits.** One team or a few teams, one deployment cadence, boundaries not yet proven.
+
+**Structure.** One deployable, modules with explicit public interfaces, no cross-module private access, one database with per-module ownership.
+
+**Runtime behaviour.** In-process calls between modules through published interfaces; events for anything that would otherwise be a reverse dependency.
+
+**Benefits.**
+- Refactoring a boundary is a rename, not a migration
+- One deploy, one trace, one transaction where you need it
+- Extraction later is cheap if the boundary held
+
+**Costs.**
+- Boundary discipline is voluntary unless automated
+- A single runtime failure affects everything
+- Scaling is coarse — you scale the whole app
+
+**Risks.**
+- "Modular" that is not enforced becomes a distributed ball of mud without the distribution
+- One slow module can starve the rest of the process
+
+**When NOT to use it.** Do not use it when parts genuinely have incompatible scaling or availability requirements, or when independent teams need independent release cadence.
+
+**Example.** Squid: nine modules in one Next.js deployment plus a worker fleet. ADR-001 records the choice and names the trigger for revisiting it — a module that needs to scale or release separately.
+
+**Validation.** Dependency guardrail in CI, plus a written extraction trigger per module.
+
+---
+
+#### Hexagonal Architecture  
+`Application shape` · *partly used in Squid*
+
+**Intent.** Make the application core independent of how it is driven and what it drives.
+
+**Problem it solves.** The domain becomes unusable outside an HTTP request because it is written against the framework.
+
+**Context where it fits.** Systems with real domain logic, multiple entry points, or a long expected life.
+
+**Structure.** Application core in the middle; driving adapters (HTTP, CLI, queue consumer) on one side, driven adapters (database, mail, payment) on the other; both attach through ports.
+
+**Runtime behaviour.** An adapter translates the outside world into a port call; the core never knows which adapter called it.
+
+**Benefits.**
+- The same use case can be driven by a route, a job or a test
+- Infrastructure can be replaced without touching rules
+- Tests run in milliseconds
+
+**Costs.**
+- Two extra types for every operation
+- Genuine overhead for CRUD that has no rules
+
+**Risks.**
+- Ports invented for things that will never have a second adapter
+- Teams confuse the shape with the benefit and produce ceremony
+
+**When NOT to use it.** Do not apply it to modules that are a thin shell over a query. Squid's search module has no hexagon and should not.
+
+**Example.** Squid: work and billing have ports; search and files talk to their infrastructure directly, deliberately.
+
+**Validation.** A use case executed by two different adapters, at least one of which is a test.
+
+---
+
+#### Ports and Adapters  
+`Boundary` · *partly used in Squid*
+
+**Intent.** Name the interface the core owns, and keep the implementation on the other side of it.
+
+**Problem it solves.** Direct calls to a vendor SDK scatter a replacement across fifty files.
+
+**Context where it fits.** Any dependency that is external, unstable or likely to be swapped.
+
+**Structure.** The core declares the port (an interface expressed in domain terms). The adapter implements it in vendor terms.
+
+**Runtime behaviour.** The core calls the port. Composition supplies the adapter. Failures are translated into the core's error set at the boundary.
+
+**Benefits.**
+- Vendor changes are contained
+- The core's error vocabulary stays stable
+- Test doubles are trivial
+
+**Costs.**
+- An interface per dependency
+- Leaky ports are worse than none — a port that exposes the vendor's types buys nothing
+
+**Risks.**
+- Port-per-class ritual
+- Hiding a dependency so thoroughly that its real failure behaviour is invisible to the core
+
+**When NOT to use it.** Do not port a dependency you would never replace and whose failure you already handle locally — the standard library, for instance.
+
+**Example.** Squid: MailPort with send(to, template, data). The adapter maps provider errors into Transient and Permanent, which is the only distinction notify cares about.
+
+**Validation.** Grep for the vendor package name: it should appear in exactly one directory. This is also the same idea as Hexagonal Architecture, named for the mechanism rather than the shape — knowing that saves an argument.
+
+---
+
+#### Clean Architecture  
+`Application shape` · *rejected for Squid*
+
+**Intent.** Organise the whole codebase around the dependency rule: source dependencies point only toward higher-level policy.
+
+**Problem it solves.** Frameworks become load-bearing and the business rules cannot outlive them.
+
+**Context where it fits.** Long-lived systems with substantial rules and a real chance of outliving their framework.
+
+**Structure.** Entities, use cases, interface adapters, frameworks and drivers — four rings, dependencies inward.
+
+**Runtime behaviour.** Control flows outward through interfaces while source dependencies point inward; the inversion is the whole trick.
+
+**Benefits.**
+- Domain survives framework churn
+- Explicit use cases are excellent documentation
+
+**Costs.**
+- Substantial ceremony — request models, response models, presenters
+- Slower to write, and noticeably so for small features
+
+**Risks.**
+- Teams adopt the folder structure and none of the dependency rule, paying the cost and getting nothing
+- Four rings for an application with no rules
+
+**When NOT to use it.** Do not use it in a product still searching for its shape, or where the framework is the product.
+
+**Example.** Squid rejected it. ADR-002: the Next.js App Router is load-bearing by choice, and a layered modular monolith gives most of the benefit at a fraction of the cost.
+
+**Validation.** If adopted: an entity test that imports nothing from the framework. If not adopted: an ADR saying so, which is what Squid has.
+
+---
+
+#### Repository  
+`Data` · *used in Squid*
+
+**Intent.** Give the domain a collection-like interface and keep query mechanics out of it.
+
+**Problem it solves.** Query builders spread through business logic; nobody can tell which indexes are needed or which tenant predicate was forgotten.
+
+**Context where it fits.** Any module that owns persistent state.
+
+**Structure.** One repository per aggregate, expressed in domain terms: findAssignable, save, ofId.
+
+**Runtime behaviour.** The domain calls the repository; the repository owns the query, the index assumption and the mapping.
+
+**Benefits.**
+- Queries become reviewable in one place
+- Tenant and soft-delete predicates can be enforced centrally
+- Index requirements become visible
+
+**Costs.**
+- Generic repositories degenerate into a worse ORM
+- Rich query needs push methods onto the interface until it is a query language again
+
+**Risks.**
+- findAll() plus filtering in memory
+- A repository that returns database documents is not a repository
+
+**When NOT to use it.** Do not wrap a reporting query in a repository. Reporting wants the query language, not an abstraction over it.
+
+**Example.** Squid: the gateway is the only code that touches Mongo. Every call carries a workspace predicate and honours deletedAt, because it is one place rather than four hundred.
+
+**Validation.** A test that proves a query without a workspace predicate cannot compile or cannot pass review.
+
+---
+
+#### Application Service  
+`Application shape` · *used in Squid*
+
+**Intent.** Hold one use case: orchestrate, do not decide.
+
+**Problem it solves.** Transport handlers accumulate rules, and the same rule ends up implemented differently in a route and in a job.
+
+**Context where it fits.** Any operation with more than one step or more than one participant.
+
+**Structure.** A function per use case: validate input, check policy, load, invoke domain, persist, emit.
+
+**Runtime behaviour.** Owns the transaction boundary and the event emission. Contains orchestration, not business rules.
+
+**Benefits.**
+- One place per use case
+- Reusable from HTTP, queue and test
+- Transaction boundary is explicit
+
+**Costs.**
+- A thin extra hop for genuinely trivial operations
+
+**Risks.**
+- Application services that grow rules become a second domain model
+- "Service" as a dumping ground for anything homeless
+
+**When NOT to use it.** Do not create one for a pure read with no policy beyond tenancy.
+
+**Example.** Squid: assignTask(cmd) validates, asks policy, loads the task, calls the domain operation, writes task and outbox in one transaction, returns a Result.
+
+**Validation.** Read the service aloud. If it contains the word "if" more than twice, the rules belong in the domain.
+
+---
+
+#### Domain Events  
+`Messaging` · *used in Squid*
+
+**Intent.** Let a module announce that something happened without knowing who cares.
+
+**Problem it solves.** Every new reaction to an action means editing the action. Work ends up importing notify, search and analytics.
+
+**Context where it fits.** When several unrelated reactions follow one business fact.
+
+**Structure.** The owning module publishes a named past-tense fact with a stable payload. Consumers subscribe.
+
+**Runtime behaviour.** Emitted inside the transaction that made the fact true; delivered after commit.
+
+**Benefits.**
+- Reverse dependencies disappear
+- New consumers require no change to the producer
+- The event log is a readable history of the domain
+
+**Costs.**
+- The payload is a contract and versioning it is real work
+- Debugging crosses an asynchronous seam
+
+**Risks.**
+- Events used as commands in disguise ("TaskShouldBeIndexed")
+- Consumers depending on fields the producer considered incidental
+
+**When NOT to use it.** Do not use events where you need an answer. A question is a call, not an event.
+
+**Example.** Squid: TaskAssigned carries workspaceId, taskId, assigneeId, actorId, at. Notify, search and activity consume it. Work imports none of them.
+
+**Validation.** The producer module's import list contains no consumer. Check it in CI.
+
+---
+
+#### Event-Driven Architecture  
+`Messaging` · *partly used in Squid*
+
+**Intent.** Make the event stream the primary means of integration between components.
+
+**Problem it solves.** Synchronous chains couple availability: if any participant is down, the whole operation fails.
+
+**Context where it fits.** Many independent reactions, tolerance for eventual consistency, and an operations capability to match.
+
+**Structure.** Producers, a broker, independent consumers with their own state and failure handling.
+
+**Runtime behaviour.** Asynchronous, at-least-once, out-of-order unless you pay for ordering.
+
+**Benefits.**
+- Availability decoupling
+- Independent scaling of consumers
+- Natural audit trail
+
+**Costs.**
+- Every consumer needs idempotency, retry and a dead-letter path
+- End-to-end tracing becomes a project
+- "Where is my data" becomes a support category
+
+**Risks.**
+- Eventual consistency leaking into a UI that promised immediacy
+- A broker outage becoming a silent, system-wide failure
+
+**When NOT to use it.** Do not make everything an event. Squid keeps commands synchronous so the user sees the result of their own action.
+
+**Example.** Squid is event-driven only after the commit: the user's write is synchronous and immediate; notification, search indexing and activity are asynchronous.
+
+**Validation.** For every asynchronous path: an idempotency strategy, a retry policy, a dead-letter queue and a backlog alert. Missing any one of the four means it is not ready.
+
+---
+
+#### Transactional Outbox  
+`Messaging` · *used in Squid*
+
+**Intent.** Make "state changed" and "event published" atomic without a distributed transaction.
+
+**Problem it solves.** Writing to the database and then publishing to a broker can succeed halfway. The dual write is the bug.
+
+**Context where it fits.** Any system that must emit events about its own state changes reliably.
+
+**Structure.** An outbox collection written inside the same transaction as the state change; a relay drains it and publishes.
+
+**Runtime behaviour.** Commit writes both. The relay polls or tails, publishes, marks delivered. Delivery is at-least-once.
+
+**Benefits.**
+- No lost events, ever, without two-phase commit
+- The outbox is a replayable log when a consumer was broken
+
+**Costs.**
+- A relay to run and watch
+- Publication latency of one poll interval
+- Consumers must be idempotent
+
+**Risks.**
+- An outbox that grows unbounded because nobody purges delivered rows
+- A relay running twice and doubling every event
+
+**When NOT to use it.** Do not use it when losing the event is genuinely acceptable — a best-effort metric does not need this.
+
+**Example.** Squid: ADR-007 chose the outbox over dual write after a spike showed a 0.3% loss rate under worker restarts. Rows purge after 7 days; backlog depth alerts at 500.
+
+**Validation.** Kill the relay mid-drain. Every event must arrive exactly once from the consumer's point of view.
+
+---
+
+#### Saga / Process Manager  
+`Messaging` · *partly used in Squid*
+
+**Intent.** Coordinate a multi-step process that cannot be one transaction, with explicit compensation.
+
+**Problem it solves.** A business process spans systems that cannot share a transaction, and failing halfway leaves inconsistent state.
+
+**Context where it fits.** Long-running processes crossing a real boundary — usually money, an external provider, or both.
+
+**Structure.** A state machine per process instance, persisted; each step has a compensating action.
+
+**Runtime behaviour.** Step, persist, react to the result, compensate backwards on failure.
+
+**Benefits.**
+- Partial failure becomes a designed state rather than an incident
+- The process is inspectable and resumable
+
+**Costs.**
+- A state machine to build, persist, version and monitor
+- Compensations are business decisions, not technical ones — refunds are not rollbacks
+
+**Risks.**
+- Saga adopted for processes that fit in one transaction
+- Stuck instances nobody monitors
+
+**When NOT to use it.** Do not use it inside one database. Squid assigns a task in a single transaction and needs no saga to do it.
+
+**Example.** Squid uses one: subscription upgrade — reserve seats, charge the provider, apply entitlements, notify. Compensation releases the seat reservation and records a failed upgrade.
+
+**Validation.** A test that fails at each step and asserts the compensated end state, plus an alert on instances older than an hour.
+
+---
+
+#### CQRS  
+`Data` · *rejected for Squid*
+
+**Intent.** Separate the model that writes from the model that reads when their needs genuinely conflict.
+
+**Problem it solves.** One model optimised for invariants makes read queries expensive, or vice versa.
+
+**Context where it fits.** Very different read and write shapes, very different scaling, or a read path that cannot tolerate write-side contention.
+
+**Structure.** Command side with the domain model; query side with denormalised read models kept up to date by events.
+
+**Runtime behaviour.** Writes go through the domain; reads bypass it entirely; propagation is asynchronous.
+
+**Benefits.**
+- Reads can be shaped exactly for the screen
+- Read and write scale independently
+
+**Costs.**
+- Two models to maintain and keep consistent
+- Every read is stale by some amount you must now specify
+- Debugging requires understanding the projection
+
+**Risks.**
+- Adopted as a default and paid for forever
+- Projections that drift with no rebuild path
+
+**When NOT to use it.** Do not adopt it before a specific read that a well-indexed query demonstrably cannot serve.
+
+**Example.** Squid rejected it (ADR-009). Board reads are served by a compound index and a projection; the p95 measured 180ms at the target size. A denormalised board read model is named as the next step if that number degrades.
+
+**Validation.** Before adopting: a measurement proving the single model cannot meet the target. After adopting: a projection rebuild that has actually been run.
+
+---
+
+#### API Gateway  
+`Edge` · *partly used in Squid*
+
+**Intent.** Put cross-cutting edge concerns in one place in front of the system.
+
+**Problem it solves.** Authentication, rate limiting, TLS and routing get reimplemented per service, differently.
+
+**Context where it fits.** Multiple backend services exposed to untrusted clients.
+
+**Structure.** A single entry point handling termination, authentication, routing, rate limiting and request logging.
+
+**Runtime behaviour.** Every external request passes through it; internal traffic may not.
+
+**Benefits.**
+- One place for edge policy
+- Backends stop caring about transport concerns
+
+**Costs.**
+- A component on the critical path of everything
+- Configuration becomes a deployment concern of its own
+
+**Risks.**
+- Business logic creeping into gateway configuration
+- A single point of failure with no fallback
+
+**When NOT to use it.** Do not put one in front of a single application that already terminates its own requests — that is what Squid does.
+
+**Example.** Squid: the Next.js edge performs the gateway role for web traffic. A separate gateway is deferred until the public API has external consumers, recorded as a trigger rather than a plan.
+
+**Validation.** Ask what happens when the gateway is down. If the answer is "everything", the pattern needs a second instance before it needs more features.
+
+---
+
+#### Backend-for-Frontend  
+`Edge` · *used in Squid*
+
+**Intent.** Give each client surface a backend shaped for that surface.
+
+**Problem it solves.** One generic API forces every client to over-fetch, and every client's needs distort it.
+
+**Context where it fits.** Genuinely different surfaces — a web app, a mobile app, a partner API — with different payload and latency needs.
+
+**Structure.** A thin per-surface layer that composes and shapes responses from shared services.
+
+**Runtime behaviour.** Client talks only to its BFF; the BFF talks to the modules.
+
+**Benefits.**
+- Payloads fit the screen
+- Clients evolve without renegotiating a shared contract
+
+**Costs.**
+- One more thing to deploy per surface
+- Logic duplicated across BFFs if discipline slips
+
+**Risks.**
+- BFFs that accumulate business rules
+- A "BFF" that is actually the only backend
+
+**When NOT to use it.** Do not build one per client when the clients want the same data.
+
+**Example.** Squid: React Server Components are the web BFF — they compose module calls server-side and send the page, not the data model. A separate mobile BFF is not built and not needed yet.
+
+**Validation.** Count the fields the client discards. If it is near zero, the shaping is working.
+
+---
+
+#### Cache-Aside  
+`Data` · *used in Squid*
+
+**Intent.** Reduce load on a source of truth without making the cache authoritative.
+
+**Problem it solves.** Repeated identical reads of slow or expensive data.
+
+**Context where it fits.** Read-heavy data that tolerates a defined staleness.
+
+**Structure.** Read cache; on miss read source and populate; on write invalidate.
+
+**Runtime behaviour.** The cache is never the source of truth and never written to directly by business logic.
+
+**Benefits.**
+- Large latency and load win for small effort
+- Cache loss degrades performance, not correctness
+
+**Costs.**
+- Every cached item needs an invalidation story and a TTL
+- Stampedes on popular keys need handling
+
+**Risks.**
+- Invalidation that is forgotten on one of the write paths
+- Caching personal data past its retention window
+
+**When NOT to use it.** Do not cache what you have not measured, and never cache an authorisation decision without a very short TTL.
+
+**Example.** Squid: workspace membership and feature flags, 60-second TTL, invalidated on membership change. Task content is not cached — it changes too often and correctness matters more than the milliseconds.
+
+**Validation.** Flush the cache under load and watch the source survive. Then change the underlying data and time how long the stale value lives.
+
+---
+
+#### Retry with Backoff  
+`Resilience` · *used in Squid*
+
+**Intent.** Survive transient failure without amplifying it.
+
+**Problem it solves.** A brief dependency blip fails a user operation that would have succeeded a second later.
+
+**Context where it fits.** Transient, idempotent operations across a network.
+
+**Structure.** Bounded attempts, exponential delay, jitter, and a distinction between retryable and permanent errors.
+
+**Runtime behaviour.** Attempt, classify the error, wait, retry, then give up into a dead-letter path.
+
+**Benefits.**
+- Most transient faults disappear
+- Cheap to add where it belongs
+
+**Costs.**
+- Latency on the failure path
+- Requires the operation to be idempotent — or it creates duplicates
+
+**Risks.**
+- Retry storms turning a degradation into an outage
+- Retrying a permanent error forever
+- Retries stacked at three layers multiplying into hundreds of calls
+
+**When NOT to use it.** Never retry a non-idempotent write without an idempotency key. Never retry a 4xx.
+
+**Example.** Squid: mail delivery retries 5 times with jitter up to 15 minutes, then dead-letters. Payment capture never retries without the provider's idempotency key.
+
+**Validation.** Count the calls the dependency actually receives during an injected failure. Retry budgets should be visible in that number.
+
+---
+
+#### Circuit Breaker  
+`Resilience` · *partly used in Squid*
+
+**Intent.** Stop calling a dependency that is clearly broken, so the caller stays alive.
+
+**Problem it solves.** A slow dependency consumes every worker thread and takes down a healthy system.
+
+**Context where it fits.** A remote dependency with a plausible failure mode of slowness rather than refusal.
+
+**Structure.** Closed, open, half-open — with a failure threshold, an open duration and a trial request.
+
+**Runtime behaviour.** When open, fail immediately with the designed degraded behaviour instead of waiting.
+
+**Benefits.**
+- Bounded blast radius
+- Recovery without a deploy
+
+**Costs.**
+- Thresholds require tuning against real traffic
+- A breaker that opens too eagerly creates the outage it was meant to prevent
+
+**Risks.**
+- No designed behaviour for the open state — an exception is not a design
+- Breakers per instance behaving inconsistently across a fleet
+
+**When NOT to use it.** Do not add one before you have a timeout. A timeout is the prerequisite; the breaker is the amplifier.
+
+**Example.** Squid: the search adapter opens after 10 failures in 30 seconds and the board renders with a "search unavailable" banner. Mail has retries and a dead-letter queue instead — it is asynchronous and nothing waits on it.
+
+**Validation.** Injected latency should cause the breaker to open and the user-facing degradation to appear, both within the stated time.
+
+---
+
+#### Bulkhead  
+`Resilience` · *used in Squid*
+
+**Intent.** Partition resources so one workload cannot consume everything.
+
+**Problem it solves.** A single expensive job class starves every other job in a shared pool.
+
+**Context where it fits.** Shared pools — threads, connections, queue workers — serving workloads of different importance.
+
+**Structure.** Separate pools, queues or instances per workload class, each with its own limit.
+
+**Runtime behaviour.** Saturating one partition degrades only that partition.
+
+**Benefits.**
+- Failure isolation without new services
+- Priority becomes structural rather than aspirational
+
+**Costs.**
+- Lower average utilisation
+- More pools to size and watch
+
+**Risks.**
+- Partitions sized by guesswork
+- So many partitions that none has enough headroom to absorb a spike
+
+**When NOT to use it.** Do not partition below the point where a partition can absorb one unit of its own work.
+
+**Example.** Squid: export jobs run on their own queue and worker pool with concurrency 1, so a large export cannot delay notification delivery during the morning peak.
+
+**Validation.** Saturate one pool and confirm the others meet their targets unchanged.
+
+---
+
+#### Idempotency  
+`Resilience` · *used in Squid*
+
+**Intent.** Make repeating an operation harmless, so that retries and at-least-once delivery are safe.
+
+**Problem it solves.** Network uncertainty means the caller cannot tell whether an operation happened. Retrying may duplicate it.
+
+**Context where it fits.** Every asynchronous consumer and every externally retryable write.
+
+**Structure.** A caller-supplied key, or natural idempotency through a deterministic identifier and a conditional write.
+
+**Runtime behaviour.** First execution performs the work and records the key; subsequent executions return the first result.
+
+**Benefits.**
+- Makes at-least-once delivery acceptable
+- Turns a retry from a risk into a tool
+
+**Costs.**
+- A key store with its own retention
+- The key must cover the right scope, which is easy to get subtly wrong
+
+**Risks.**
+- Keys scoped per attempt rather than per intent — which protects nothing
+- Idempotency asserted but never tested
+
+**When NOT to use it.** Do not bolt it on after adopting retries. It is the precondition, not the follow-up.
+
+**Example.** Squid: notification consumers key on eventId + channel. Task creation from the UI keys on a client-generated ULID, so a double submit creates one task.
+
+**Validation.** Deliver the same event twice on purpose in a test and assert one effect.
+
+---
+
+#### Strangler Fig  
+`Change` · *rejected for Squid*
+
+**Intent.** Replace a system incrementally by routing capability away from it, piece by piece.
+
+**Problem it solves.** A rewrite that must land all at once will not land.
+
+**Context where it fits.** Replacing or extracting from a system that must keep running throughout.
+
+**Structure.** A routing seam in front of old and new; capabilities move across one at a time; the old system shrinks until it is removed.
+
+**Runtime behaviour.** Every request is routed to one implementation; both run in parallel during migration.
+
+**Benefits.**
+- Value lands continuously
+- Each step is individually reversible
+- Risk is bounded per capability
+
+**Costs.**
+- Two implementations to run, monitor and keep consistent
+- The seam itself is work
+
+**Risks.**
+- The final 10% never gets migrated and the seam becomes permanent
+- Data ownership split across both systems with no source of truth
+
+**When NOT to use it.** Do not use it when the system can be replaced in a single safe step, or when nobody has committed to finishing.
+
+**Example.** Squid does not need it today — it is a new system. It is recorded as the intended approach if the work module is ever extracted, together with the seam that would be required.
+
+**Validation.** A dated plan with the last capability named, and a per-capability traffic percentage that someone actually watches.
+
+### Preventing cargo cult
+
+**Name the problem before the pattern.** If the sentence starts with the pattern — “we should use CQRS” — stop and write the problem first. A problem statement that does not survive being written down was a preference.
+
+**State the cost in this system.** Not the textbook cost. *Ours.* “Two models to keep consistent” is generic. “Two models, maintained by four engineers who also own billing, with no projection rebuild yet written” is a decision input.
+
+**Name what you are rejecting.** Every pattern selection is a rejection of at least one alternative. If no alternative was considered, no decision was made — a default was accepted.
+
+**Name the abandonment trigger.** Under what future condition would this pattern be wrong? A pattern with no abandonment trigger becomes permanent by default, which is how systems end up with two event buses.
+
+**Check the prerequisite.** Several patterns have hard prerequisites. Retry requires idempotency. A circuit breaker requires a timeout. At-least-once delivery requires idempotent consumers. Adopting the headline without the prerequisite produces the failure the pattern was meant to prevent, with extra machinery.
+
+> **The three most expensive mis-adoptions.** - **CQRS without a measurement.** Adopted because reads “will get slow”, paid for in two models forever. Measure first; an index usually wins.
+> - **Microservices without an operations capability.** The boundaries are the benefit; the network is the cost. A modular monolith gives the first without the second.
+> - **Retry without idempotency.** Turns a transient failure into a duplicate write, which is a data problem rather than an availability one, and far harder to see.
+
+**What good looks like**
+
+- Each pattern names the problem it was chosen for
+- Costs are stated in this system’s terms
+- At least one pattern has been rejected in writing
+- Prerequisites are satisfied before the pattern is adopted
+- Each pattern has an abandonment trigger
+
+**What weak looks like**
+
+- Patterns named in a diagram legend and nowhere else
+- Benefits listed, costs absent
+- A pattern adopted because another team uses it
+- Three retry implementations with three behaviours
+- Nobody can say when the pattern would be wrong
+
+**You should now be able to**
+
+- Record a pattern with intent, cost, exclusion and validation
+- Reject a pattern in writing, with the reason
+- Identify a missing prerequisite before adoption
+- Name the abandonment trigger for a pattern in your system
+
+*Related: Patterns & Reference Architectures · Principles → Standards · Decision Framework · The Module Architecture Contract*
+
+---
+
+## Chapter 10 — The Module Architecture Contract
+
+> Twenty-one clauses that turn “this module exists” into “this is what you may rely on”.
+
+**Why this matters.** A module is not architecturally complete because folders and files have been defined. Folders answer where; a contract answers what, why, how, and what if it fails.
+
+Ask most teams to describe a module and you get a directory listing and a sentence. Ask what happens when its dependency is unavailable, who owns its data, which events it publishes and what it guarantees under concurrency, and the room goes quiet. The contract is the set of questions that fills that silence.
+
+*What a real architectural description of a module answers*
+
+```text
+WHAT?                 It exists, and owns this
+WHY?                  It exists for this reason
+HOW?                  It is structured this way
+HOW DOES IT INTERACT? Through this interface, these events
+WHAT PATTERN?         This approach, at this cost
+WHAT DATA?            These collections, this lifecycle
+WHAT IF IT FAILS?     These outcomes, not these exceptions
+WHAT GUARANTEES?      This, under these conditions
+HOW DO WE KNOW?       This evidence, dated
+```
+
+**1. Purpose** — Why does this module exist, in one sentence a product person would accept?
+
+> *Squid, work module.* Manage business tasks and their lifecycle inside a workspace.
+>
+> *Weak answer.* "Handles task-related functionality." That sentence would survive the module being deleted.
+
+**2. Responsibility** — What is this module answerable for — and what is it explicitly not answerable for?
+
+> *Squid, work module.* Answerable for: task identity, metadata, status transitions, relationships, lifecycle. Not answerable for: who may act (policy), notification delivery (notify), or full-text retrieval (search).
+>
+> *Weak answer.* A responsibility list with no exclusions. Everything in the system is arguably task-related.
+
+**3. Boundary** — What is inside the module, and what must go through its public interface?
+
+> *Squid, work module.* Inside: the task aggregate, its state machine, its repository. Outside: any caller. No code outside work reads a task document directly.
+>
+> *Weak answer.* A boundary that exists in the folder structure and nowhere else.
+
+**4. Owned data** — Which collections does it own, and what is the lifecycle of each?
+
+> *Squid, work module.* tasks, task_links, task_activity. Soft delete on tasks with a 30-day TTL purge; activity retained 400 days; links cascade on task purge.
+>
+> *Weak answer.* Shared write access to tasks "just for the migration".
+
+**5. Dependencies** — What does it depend on, and could it be built without each one?
+
+> *Squid, work module.* identity (actor resolution), workspace (membership and seat state), policy (authorisation). Plus the gateway for persistence and the outbox for publication.
+>
+> *Weak answer.* A dependency list that omits the ones acquired accidentally through a shared utility.
+
+**6. Dependency direction** — Which way do dependencies point, and what may not point back?
+
+> *Squid, work module.* work → identity, workspace, policy. Nothing may import work except through its published interface; notify, search and activity consume events instead.
+>
+> *Weak answer.* Work importing notify to send an e-mail. That is the cycle that turns a modular monolith into a monolith.
+
+**7. Public interface** — What commands and queries does it expose, with what error set?
+
+> *Squid, work module.* Commands: createTask, updateTask, assignTask, transitionTask, linkTasks, archiveTask. Queries: taskById, boardView, assignableMembers. Errors: NotFound, Forbidden, Conflict, Invalid.
+>
+> *Weak answer.* An interface that returns database documents, which makes the schema a public contract by accident.
+
+**8. Internal structure** — How is it organised inside, and what enforces that?
+
+> *Squid, work module.* db/ (schema, repository), domain/ (aggregate, state machine, rules), policy/ (resource descriptors), actions/ (application services), ui/ (server components and islands). Import rules in architecture/deps.json.
+>
+> *Weak answer.* Structure documented in a wiki page and enforced by code review on a good day.
+
+**9. Architectural patterns** — Which patterns are used here, and what does each cost?
+
+> *Squid, work module.* Application service, repository behind the gateway, domain events, transactional outbox. Not hexagonal — there is one driving adapter and no plan for a second.
+>
+> *Weak answer.* Listing patterns without cost. Every pattern here bought something and charged for it.
+
+**10. Runtime behaviour** — What happens, step by step, when the module is exercised?
+
+> *Squid, work module.* Command → Zod validation → policy decision → load aggregate → domain operation → transaction writing task and outbox → return Result. Relay publishes after commit.
+>
+> *Weak answer.* "It saves the task." That is the one step nobody was worried about.
+
+**11. Events** — What does it publish, what does it consume, and what is the payload contract?
+
+> *Squid, work module.* Publishes TaskCreated, TaskUpdated, TaskAssigned, TaskCompleted, TaskArchived. Consumes UserDeleted (unassign and anonymise) and ProjectArchived (archive contained tasks).
+>
+> *Weak answer.* Events with the whole document as payload. Now every field is a contract.
+
+**12. State** — What states exist, which transitions are legal, and who may cause them?
+
+> *Squid, work module.* DRAFT, OPEN, IN_PROGRESS, BLOCKED, DONE, ARCHIVED. DONE → OPEN only by the assignee or an admin, and only within 24 hours. ARCHIVED is terminal apart from restore by an admin.
+>
+> *Weak answer.* Status as a free string, validated in the UI.
+
+**13. Failure behaviour** — What happens when each thing that can fail, fails?
+
+> *Squid, work module.* Validation → 400 with field errors. Authorisation → 403, logged. Version conflict → 409 and the client refetches. Database failure → transaction rolls back, nothing published. Outbox relay failure → events wait and are replayed; the backlog alerts at 500. Duplicate submit → absorbed by the client-supplied ULID.
+>
+> *Weak answer.* A failure section that lists exceptions rather than outcomes.
+
+**14. Security model** — What trust boundary does it sit behind, and what does it check itself?
+
+> *Squid, work module.* Behind the authenticated session boundary. Never trusts the caller for workspace scope — every gateway call carries the workspace predicate. Policy is asked for every command; default deny.
+>
+> *Weak answer.* "The route already checked." Modules that assume their callers are careful eventually get a careless caller.
+
+**15. Reliability model** — What does it promise when its dependencies are degraded?
+
+> *Squid, work module.* Policy unavailable → fail closed, commands rejected with a retryable error. Search unavailable → board unaffected. Realtime unavailable → writes succeed, clients fall back to refresh.
+>
+> *Weak answer.* Promises with no stated behaviour for the degraded case.
+
+**16. Performance considerations** — What are the targets, and what is the expensive path?
+
+> *Squid, work module.* Board view p95 under 400ms at 5,000 tasks per workspace, served by { workspaceId, status, updatedAt }. Task write p95 under 250ms. The expensive path is the board query with filters; it is paginated and capped at 200 rows.
+>
+> *Weak answer.* No target, therefore no bug — until someone notices.
+
+**17. Observability** — What does it emit, and what would tell you it is unhealthy?
+
+> *Squid, work module.* Structured logs with workspaceId and actorId, a counter per command outcome, a histogram of board-read latency, and outbox lag. Unhealthy looks like conflict rate above 2% or outbox lag above 60 seconds.
+>
+> *Weak answer.* Logging that cannot be filtered by tenant during an incident.
+
+**18. Operational considerations** — What ongoing work does this design create for whoever runs it?
+
+> *Squid, work module.* Watch outbox lag, purge delivered rows, run the 30-day task purge, re-run the board index build after a schema migration. One runbook entry per alert.
+>
+> *Weak answer.* Operational cost discovered by the on-call engineer.
+
+**19. Architectural decisions** — Which ADRs constrain this module?
+
+> *Squid, work module.* ADR-001 modular monolith, ADR-004 one writer per collection, ADR-007 outbox over dual write, ADR-009 no CQRS for board reads, ADR-016 optimistic concurrency via a version predicate.
+>
+> *Weak answer.* A module whose shape nobody can explain, because the reasons were never written down.
+
+**20. Constraints** — What is fixed, by whom, and what happens if it is violated?
+
+> *Squid, work module.* No direct Mongo access outside the gateway (CI fails). No synchronous call to notify (CI fails). Board payload capped at 200 rows (test fails). Data resides in one region (a legal constraint, not a technical one).
+>
+> *Weak answer.* Constraints that are conventions. A constraint nobody can break is a constraint; the rest are hopes.
+
+**21. Validation evidence** — What demonstrates that the above is true rather than intended?
+
+> *Squid, work module.* Board benchmark at 5,000 tasks (180ms p95, dated). Outbox kill test — no loss, no duplicates at the consumer. Cross-tenant read test returns empty. Dependency check green in CI. Not yet evidenced: behaviour at 50,000 tasks per workspace.
+>
+> *Weak answer.* An empty evidence section, which converts the whole contract into an intention.
+
+### How to use it
+
+1. **Not every module needs all twenty-one clauses.** A module with no state skips owned data; a module with no events skips events. Skipping is fine; leaving a clause blank because nobody asked is not.
+2. **Write it when the module is created, not when it is finished.** Half the clauses are decisions, and decisions made in writing are cheaper than decisions discovered in review.
+3. **Keep it beside the code.** A contract in a wiki drifts; a contract in the module directory is edited by the same pull request that breaks it.
+4. **Review it when the boundary changes.** A new dependency, a new event, or a new writer to owned data are all contract amendments, not implementation details.
+5. **Treat the evidence clause as load-bearing.** Without it, the other twenty clauses describe intentions.
+
+**A README.** Tells you how to run the module, what the scripts do, and where the tests are. Necessary. It says nothing about what other modules may rely on, so it cannot be violated.
+
+**What others may depend on.** States the interface, the guarantees, the failure behaviour and the evidence. It can be violated, which is precisely what makes it worth writing — a promise nobody can break is not a promise.
+
+> **Why twenty-one clauses and not five.** Because the omitted clauses are always the same ones — failure behaviour, dependency direction, owned data lifecycle, observability and evidence — and they are exactly the clauses that cost money when they are missing. A shorter template would be adopted faster and would omit the expensive parts, which is the outcome it was meant to prevent.
+
+**You should now be able to**
+
+- Write a module contract that someone could violate
+- Distinguish a contract from a README
+- Identify which clauses a given module can legitimately skip
+- Use the evidence clause to separate what is true from what is intended
+
+*Related: Designing Components · API & Contract Design · Architecture Document Types · Architecture Completeness*
+
+---
+
+## Chapter 11 — The Architecture Artifact Map
+
+> Start from the question, not from the artifact. Fifteen questions, fifteen answers, and what each artifact must not try to be.
+
+**Why this matters.** Teams produce artifacts because a template listed them. Producing them because someone has a question is the difference between documentation and architecture.
+
+Every artifact in this handbook exists to answer a specific question. When the question is not being asked, the artifact is overhead — maintained, trusted, and slowly becoming wrong.
+
+**What is the system?**  
+→ Context Diagram · Context view · L0
+
+- *Shows.* The system as one box, its actors, the external systems it depends on, and the boundary between them.
+- *Squid example.* Squid with members, admins, guests around it and identity, storage, mail, payments and calendar outside.
+- *Must not become.* It does not show internal components, and the moment it does it has stopped being a context diagram.
+
+**What exists?**  
+→ Container / Architecture Diagram · Structure view · L1
+
+- *Shows.* Independently deployable or independently meaningful blocks, what each owns, and how they communicate.
+- *Squid example.* Next.js app, worker fleet, realtime service, MongoDB, Redis, object storage, Atlas Search — with protocol on every edge.
+- *Must not become.* It does not show classes, and it should not show every collection.
+
+**What is inside a module?**  
+→ Component Diagram · Structure view · L2
+
+- *Shows.* Components inside one container or module, their responsibilities and their dependency directions.
+- *Squid example.* Inside work: command handlers, the task domain model, the task repository port, the board query.
+- *Must not become.* One per container that needs it — not one per container as a rule.
+
+**How does it execute?**  
+→ Sequence Diagram · Behaviour view · L3
+
+- *Shows.* Participants in order, the boundary crossed at each step, and the failure branch at each step.
+- *Squid example.* Assign task: action → validation → policy → gateway → transaction → outbox → relay → notify.
+- *Must not become.* It is not a call graph. If every function appears, it is too detailed to be read.
+
+**How does a business process work?**  
+→ Workflow Diagram · Behaviour view · L3
+
+- *Shows.* The business-level steps, decision points, actors and compensations — independent of components.
+- *Squid example.* Onboarding a workspace: invite, accept, seat allocation, first project, billing activation.
+- *Must not become.* It does not name components, which is exactly why product people can read it.
+
+**How does state change?**  
+→ State Diagram · Behaviour view · L3
+
+- *Shows.* The legal states of one entity, the transitions between them, and who may cause each transition.
+- *Squid example.* Task: DRAFT → OPEN → IN_PROGRESS → BLOCKED → DONE → ARCHIVED, with the rule that DONE cannot return to DRAFT.
+- *Must not become.* It is not a flowchart of the UI.
+
+**How does data move?**  
+→ Data-Flow Diagram · Data view · L3
+
+- *Shows.* Where data originates, where it is stored, where it is copied, and where it leaves the system.
+- *Squid example.* Task text → Mongo → search index → notification e-mail body → the mail provider's logs. That last hop is why deletion is hard.
+- *Must not become.* It is not the entity model; it is about movement, not shape.
+
+**Who owns data?**  
+→ Data Architecture · Data view · L2
+
+- *Shows.* Every store and collection with exactly one owning module, plus retention and deletion rules.
+- *Squid example.* Squid: 21 collections, one writer each, soft delete with a 30-day purge.
+- *Must not become.* Not a schema dump. Ownership and lifecycle are the point.
+
+**Where does it run?**  
+→ Deployment Diagram · Deployment view · L1
+
+- *Shows.* Runtime placement, environments, scaling units, and where state actually lives.
+- *Squid example.* Vercel edge + regional functions, worker containers scaling on queue depth, Atlas in one region.
+- *Must not become.* Not the logical structure again with cloud icons.
+
+**How does it fail?**  
+→ Failure-Flow Diagram · Reliability view · L3
+
+- *Shows.* The path a request takes when a dependency is degraded or gone, and what the user sees.
+- *Squid example.* Search unavailable: the board renders, the search box is disabled with a banner, an alert fires.
+- *Must not become.* Not an exception-handling diagram. It is about designed behaviour, not stack traces.
+
+**What pattern is being used?**  
+→ Pattern Specification · Patterns view · L2–L3
+
+- *Shows.* Intent, problem, structure, runtime behaviour, cost in this system, and when it would be abandoned.
+- *Squid example.* Outbox in Squid: chosen over dual write, costs a relay and a purge job, abandoned if the broker gains transactional writes.
+- *Must not become.* Not a textbook summary. If it has no cost section it is not finished.
+
+**Why was this chosen?**  
+→ Architecture Decision Record · Decisions view · any
+
+- *Shows.* Context, problem, drivers, options, criteria, evidence, decision, consequences, risks, rejected alternatives.
+- *Squid example.* ADR-012: CRDT over operational transform for document sync, with a spike behind it.
+- *Must not become.* Not for every implementation choice. Reserve it for the expensive and the irreversible.
+
+**What does this module guarantee?**  
+→ Module Architecture Contract · Structure view · L2–L3
+
+- *Shows.* Purpose, boundary, owned data, dependencies and direction, public interface, patterns, runtime behaviour, events, state, failure, security, reliability, performance, observability, operations, decisions, constraints, evidence.
+- *Squid example.* The Squid work module's contract — the persistent example of this handbook.
+- *Must not become.* Not a README. A README tells you how to run it; a contract tells you what you may rely on.
+
+**What constraints apply?**  
+→ Architecture Standards · Structure view · any
+
+- *Shows.* Enforceable rules derived from principles, each with a guardrail and a stated exception path.
+- *Squid example.* "No module imports another module's db folder" — enforced by the dependency checker in CI.
+- *Must not become.* Not a style guide, and not advice. A standard that cannot be violated visibly is a preference.
+
+**What proves the architecture?**  
+→ Architecture Evidence · Validation view · any
+
+- *Shows.* Measurements, spikes, injected failures, guardrail runs and review records tied to specific claims.
+- *Squid example.* The board-read benchmark at 5,000 tasks; the outbox loss-rate spike; the CI dependency check.
+- *Must not become.* Not a sign-off. A signature is not evidence.
+
+### Reading the map backwards
+
+The map is also a diagnostic. Take the artifacts your team actually maintains and find the question each one answers. Any artifact whose question nobody is asking is a candidate for deletion. Any question on the map that nothing in your system answers is a gap — and the gap is usually behaviour, data ownership or evidence.
+
+> **One artifact, one question.** An artifact that answers three questions answers none of them well and goes stale three times as fast. When a diagram starts accumulating annotations about deployment, security and failure, it is telling you that three views want their own artifact.
+
+**What good looks like**
+
+- Every maintained artifact has a question and an audience
+- Artifacts are deleted when their question stops being asked
+- The riskiest question has the most carefully maintained answer
+- Each artifact states what it is not
+
+**What weak looks like**
+
+- A documentation folder nobody has opened in a year
+- One diagram carrying structure, deployment and failure
+- Artifacts produced because a template required them
+- Questions answered only in the heads of two people
+
+**You should now be able to**
+
+- Select an artifact by the question being asked
+- Delete an artifact whose question is dead
+- Find gaps by looking for unanswered questions
+- Explain what each artifact must refuse to become
+
+*Related: Architecture Document Types · Diagramming · Documentation as a System · The Architecture Views*
+
+---
+
+## Chapter 12 — The Capability Architecture Loop
+
+> Twelve stations, run per capability, at whatever depth the capability deserves.
+
+**Why this matters.** Architecture fails at the seams between capabilities. A repeatable loop means the same questions get asked every time, including by whoever is least likely to think of them.
+
+This is the reusable mental model of the handbook. It is not a process to be scheduled; it is a sequence of questions that takes ten minutes for a small capability and two sessions for a consequential one.
+
+**01 · Capability** — What can a user or the business do that they could not before?
+
+- *Do.* State it as an outcome, not a feature list.
+- *Output.* One sentence.
+- *Squid, assigning a task.* A team can assign work to a person and both sides can see its state change.
+- *Going shallow.* Never. If you cannot say this, nothing below it is grounded.
+
+**02 · Context** — Who participates, and what does it touch outside itself?
+
+- *Do.* Name the actors and the external systems involved in this capability only.
+- *Output.* A context sketch or a paragraph.
+- *Squid, assigning a task.* Members and admins; touches identity, notification and the calendar integration.
+- *Going shallow.* Skip the diagram when the capability touches nothing external; keep the sentence.
+
+**03 · Boundary** — Which module owns it, and what crosses the line?
+
+- *Do.* Assign one owner. List what enters and leaves.
+- *Output.* An ownership statement.
+- *Squid, assigning a task.* work owns it. Policy decides permission; notify reacts; nothing else writes.
+- *Going shallow.* Never. An unowned capability is how duplication starts.
+
+**04 · Structure** — What exists to make it work?
+
+- *Do.* Identify components — existing ones first. New components need a reason.
+- *Output.* Component list or diagram.
+- *Squid, assigning a task.* Task aggregate, assignment rule, repository, board query. No new component.
+- *Going shallow.* Skip the diagram when nothing new appears.
+
+**05 · Pattern** — Is there an established approach, and does it fit here?
+
+- *Do.* Name the pattern and its cost in this system. Name the one you rejected.
+- *Output.* A line in the design, or an ADR if consequential.
+- *Squid, assigning a task.* Application service plus domain event. Rejected: calling notify directly, which would create a cycle.
+- *Going shallow.* Skip when the work is an obvious variation of something already patterned.
+
+**06 · Behaviour** — What happens at runtime, step by step?
+
+- *Do.* Write the sequence with the boundary crossed per step.
+- *Output.* Sequence or workflow.
+- *Squid, assigning a task.* Validate → authorise → load → transition → persist with outbox → publish → notify.
+- *Going shallow.* Skip when the behaviour is a single write with no participants beyond the module.
+
+**07 · Data** — What is created, changed or moved, and who owns it?
+
+- *Do.* Name fields, indexes, transaction boundary and retention.
+- *Output.* Data notes or a model change.
+- *Squid, assigning a task.* tasks.assigneeId, tasks.version, an activity row; one transaction with the outbox; activity kept 400 days.
+- *Going shallow.* Never skip ownership. Skip the detail when no schema changes.
+
+**08 · Failure behaviour** — What happens when each step fails?
+
+- *Do.* One branch per step. "Cannot fail" is an acceptable answer if it is true.
+- *Output.* Failure branches on the sequence.
+- *Squid, assigning a task.* Conflict → 409 and refetch. Outbox relay down → event waits. Mail down → queued, retried, dead-lettered.
+- *Going shallow.* Never. This is the step teams skip and the one incidents come from.
+
+**09 · Cross-cutting** — What do the lenses say?
+
+- *Do.* Walk security, reliability, performance, operations, UX, DX, cost, accessibility. Record "nothing to add" where that is the honest answer.
+- *Output.* A short note per lens that has something to say.
+- *Squid, assigning a task.* Security: assignee must be a workspace member. UX: optimistic update with rollback. Ops: one more outbox consumer to watch. A11y: the assignment control must be operable by keyboard and announce the change.
+- *Going shallow.* Skip depth, never the walk. A lens with nothing to say takes ten seconds to clear.
+
+**10 · Decision** — Was anything decided here that someone will later ask about?
+
+- *Do.* Write the ADR if it is consequential or expensive to reverse.
+- *Output.* An ADR, or nothing.
+- *Squid, assigning a task.* No new ADR — it follows ADR-007 and ADR-016.
+- *Going shallow.* Skip for reversible, low-consequence choices. Most of them.
+
+**11 · Validation** — How will we know it works as designed?
+
+- *Do.* Attach the test, the measurement or the injected failure.
+- *Output.* Evidence, named before the work starts.
+- *Squid, assigning a task.* Concurrency test proving the version predicate; duplicate-event test proving one notification.
+- *Going shallow.* Never. Decide the evidence before the implementation, or it becomes optional.
+
+**12 · Baseline** — What changed in the architecture, and is it recorded?
+
+- *Do.* Update the affected views and the version. Or record explicitly that nothing changed.
+- *Output.* A baseline entry.
+- *Squid, assigning a task.* No structural change; the event catalogue gained TaskAssigned; baseline moved to 1.3.
+- *Going shallow.* Never. Unrecorded change is how the baseline becomes fiction.
+
+### Running it well
+
+**Never skip boundary, failure, cross-cutting or validation.** The other eight stations can be answered in a sentence when the capability is simple. These four are where the expensive omissions live, and a sentence each is still an answer.
+
+**Scale the output, not the station list.** A small capability produces one paragraph covering all twelve. A large one produces a sequence diagram, a data model and an ADR. The stations do not change; the artifacts do.
+
+**“Nothing to add” is a valid answer, silence is not.** Walking the cross-cutting station and recording “no security implications beyond workspace membership” takes ten seconds and is worth exactly as much as the sentence it saves in the incident review.
+
+**Decide the evidence before the implementation.** Validation named at station eleven, before any code exists, is a test somebody writes. Validation named afterwards is a test somebody intends to write.
+
+> **The failure mode of any loop.** Ritual. Twelve stations walked mechanically, each with a sentence that means nothing, produces a document that satisfies a process and protects nobody. The signal that this is happening: the failure-behaviour station says “handled gracefully” more than once.
+
+**You should now be able to**
+
+- Run the loop for one capability at proportionate depth
+- Identify the four stations that must never be skipped
+- Record “nothing to add” honestly rather than leaving silence
+- Spot a loop that has degenerated into ritual
+
+*Related: From Architecture to System Design · Runtime & Behavioural Architecture · Architecture Impact · Evidence, Experiments & Spikes*
+
+---
+
+## Chapter 13 — Architecture Completeness
+
+> An element is not architecturally complete because it appears on a diagram. Fourteen questions decide.
+
+**Why this matters.** “Is the architecture done?” is unanswerable. “Can this element answer these fourteen questions, at the depth its risk justifies?” is answerable in a meeting.
+
+Completeness is not the number of documents. It is whether a significant element can answer the questions someone will need answered before they can safely change it — or before they are paged about it.
+
+> **The completeness standard.** **A significant architectural element is not considered architecturally complete merely because it appears on an architecture diagram.** It is complete when it can answer structure, responsibility, boundary, dependencies, behaviour, interaction, patterns, data, failure, security, reliability, operations, decisions and validation — each to the depth its risk justifies, and no further.
+
+| Dimension | Question | A real answer | Not this |
+|---|---|---|---|
+| Structure | What exists? | The element is named, placed, and has exactly one owner. | It appears on a diagram and nowhere else. |
+| Responsibility | What does it own? | One sentence of responsibility and an explicit exclusion. | A noun. "The task service." |
+| Boundary | What is inside and outside? | What must go through the public interface is stated. | The boundary is the folder name. |
+| Dependencies | What does it depend on? | Dependencies listed with direction, including the accidental ones. | The obvious three are listed and the shared utility is not. |
+| Behaviour | How does it behave at runtime? | At least one real scenario written step by step. | "It handles requests." |
+| Interaction | How does it communicate? | Protocol, synchronicity and contract per edge. | An arrow with no label. |
+| Patterns | What approach is used? | Named, with its cost in this system. | Named, with its benefits only. |
+| Data | What does it own, read, write and publish? | Collections with ownership, events with payload contracts. | A schema with no ownership statement. |
+| Failure | What happens when things fail? | A branch per failure, including dependency unavailability. | "Errors are logged." |
+| Security | What trust boundaries and rules apply? | Where the decision is made, what the default is, what happens when the control fails. | "Requires authentication." |
+| Reliability | What guarantees exist? | Degraded behaviour stated per dependency. | "Highly available." |
+| Operations | How is it observed, deployed, recovered? | Signals with thresholds and a first action per alert. | A dashboard nobody owns. |
+| Decisions | Why is it this way? | The consequential choices have records with rejected options. | Everyone remembers the meeting. |
+| Validation | What evidence exists? | Measurements, tests or injected failures tied to specific claims. | A sign-off. |
+
+### Significant, and what it excludes
+
+This standard applies to *significant* elements: those whose failure, change or misuse has consequences beyond their own boundary. A utility that formats dates is not significant. A module that owns data, crosses a trust boundary, integrates with an external system, or sits on a critical path is. Applying the standard to everything is how a useful bar becomes bureaucracy, and how teams learn to ignore it.
+
+**Always significant**
+
+- Owns persistent data
+- Crosses a trust boundary
+- Integrates with an external system
+- Sits on a critical path
+- Has a failure mode that affects others
+
+**Sometimes**
+
+- Internal module with no state
+- Component with one caller
+- Job that can be re-run freely
+- Read-only projection
+
+**Not significant**
+
+- Pure functions and formatters
+- UI components with no rules
+- Configuration wrappers
+- Anything cheap to delete and rewrite
+
+> **Why “complete” must be relative to risk.** An absolute standard produces one of two outcomes: everything is incomplete forever, or the bar is lowered until everything passes. A risk-relative standard produces a third — a small number of elements documented deeply, most documented briefly, and an explicit, reviewable statement of which is which.
+
+**You should now be able to**
+
+- Judge whether an element is architecturally complete
+- Decide whether an element is significant enough to hold to the standard
+- Explain why completeness is relative to risk
+- Use the fourteen questions as a review agenda
+
+*Related: Architecture Review Checklist · Architecture Baseline Gate · The Module Architecture Contract · Depth × Views*
+
+---
+
+## Chapter 14 — The Architecture Process
+
+> Seventeen activities, and the nine-station loop that stops them being a waterfall.
+
+**Why this matters.** Written as a sequence, architecture looks like a phase. Written as a loop, it looks like what it is — a model that is established early, corrected by evidence, and evolved on purpose.
+
+The activities below are real and each one produces something. The order is a reasonable default, not a gate sequence. Most systems revisit half of them in any given quarter.
+
+*The activities — a default order, not a waterfall*
+
+```text
+ 1 Establish context              10 Record architectural decisions
+ 2 Establish structure            11 Review architecture
+ 3 Identify architectural drivers 12 Validate with evidence
+ 4 Define boundaries              13 Baseline architecture
+ 5 Select / define patterns       14 Perform detailed system design
+ 6 Define runtime behavior        15 Implement
+ 7 Define data                    16 Validate
+ 8 Define deployment              17 Evolve architecture
+ 9 Define cross-cutting concerns
+```
+
+> **Read this before using the list.** This is **not** a rigid waterfall. Architecture is progressively elaborated: you establish enough context to propose structure, enough structure to find the real decisions, and enough evidence to know whether the structure survives. Teams that run the list top to bottom once, then stop, have performed architecture rather than done it.
+
+### The loop underneath
+
+**1. Understand** — What problem, whose problem, and what would success look like?
+
+- *Produces.* Problem statement, actors, drivers with measures.
+- *The trap.* Starting at Model. Every architecture argument that will not resolve is an unshared understanding.
+
+**2. Model** — What would this look like?
+
+- *Produces.* Context and structure at the depth the uncertainty justifies.
+- *The trap.* Modelling at L4 before anyone agrees on L1.
+
+**3. Decide** — Which choices are expensive to reverse, and which option wins on the criteria?
+
+- *Produces.* ADRs with rejected options.
+- *The trap.* Deciding without naming the criteria, which makes the decision unreviewable.
+
+**4. Design** — How does it actually work, in detail, where detail matters?
+
+- *Produces.* Sequences, contracts, data models, failure branches.
+- *The trap.* Designing everything to the same depth.
+
+**5. Validate** — What evidence supports the claims?
+
+- *Produces.* Spikes, benchmarks, injected failures, guardrails, a review by someone outside.
+- *The trap.* Treating review as approval rather than as an attempt to break the thing.
+
+**6. Baseline** — What is now the agreed state, and what is still open?
+
+- *Produces.* A versioned baseline with open questions listed, not hidden.
+- *The trap.* Baselining to look finished.
+
+**7. Implement** — Does the code match the architecture?
+
+- *Produces.* Working software plus guardrails that keep it matching.
+- *The trap.* Discovering during implementation that the design was never checked against the framework.
+
+**8. Observe** — What is the system actually doing?
+
+- *Produces.* Signals, incidents, real load numbers.
+- *The trap.* No feedback path from production into the architecture.
+
+**9. Evolve** — What did we learn, and what must change?
+
+- *Produces.* Impact assessments, updated views, a new baseline version.
+- *The trap.* Letting the document and the system drift apart silently.
+
+```text
+UNDERSTAND
+    ↓
+MODEL
+    ↓
+DECIDE
+    ↓
+DESIGN
+    ↓
+VALIDATE
+    ↓
+BASELINE
+    ↓
+IMPLEMENT
+    ↓
+OBSERVE
+    ↓
+EVOLVE
+    ↺
+```
+
+The loop and the list describe the same work. The list is what you produce; the loop is how the work actually moves — and the two stations teams most often have no path for are **Observe** and **Evolve**. Without a feedback path from production into the architecture, the baseline is a snapshot of what was believed at the start, and the drift is invisible until an incident measures it.
+
+**What good looks like**
+
+- Architecture work happens at the depth the uncertainty justifies
+- Production behaviour feeds back into the model
+- The baseline version moves when the system changes
+- Evidence corrects earlier decisions in writing
+- Open questions are visible in the baseline
+
+**What weak looks like**
+
+- A single architecture phase before delivery
+- A baseline that has not changed in a year of change
+- Incidents that never reach the architecture record
+- Decisions superseded in practice and not in writing
+- The same depth of analysis applied to everything
+
+**You should now be able to**
+
+- Run the activities as a loop rather than a sequence
+- Name the feedback path from production into the architecture
+- Explain progressive elaboration to someone who wants a phase
+- Identify a missing Observe or Evolve station in your own team
+
+*Related: The Architecture Lifecycle · Architecture Gates · Evolving the Baseline · Architecture Debt · The Capability Architecture Loop*
+
+---
+
+# PART IV — DRIVERS
 
 *Architecture responds to something. This part is about finding out what, precisely — and
 separating what must be true from what we merely believe.*
 
 ---
 
-## Chapter 4 — Understanding the Problem
+## Chapter 15 — Understanding the Problem
 
 > Work from problem to actors to goals to capabilities to requirements to constraints — in that
 > order, and slowly enough to be surprised.
@@ -478,7 +2791,7 @@ boundary decision (ADR-002). Owner: Product. Due: end of quarter.
 
 ---
 
-## Chapter 5 — Architectural Drivers
+## Chapter 16 — Architectural Drivers
 
 > A requirement is an architectural driver when a plausible alternative structure would satisfy it
 > materially better or worse.
@@ -550,7 +2863,7 @@ reasoned. Both are worth knowing.
 
 ---
 
-## Chapter 6 — Constraints, Assumptions & Unknowns
+## Chapter 17 — Constraints, Assumptions & Unknowns
 
 > Three different things that look identical in a meeting: what must be true, what we believe is
 > true, and what we do not know.
@@ -613,14 +2926,14 @@ Status       ACTIVE — two farms consistently late; escalate if a
 ---
 ---
 
-# PART III — UNIVERSAL ARCHITECTURE PRINCIPLES
+# PART V — UNIVERSAL ARCHITECTURE PRINCIPLES
 
 *Principles are the reasoning patterns used to shape a system — and they are decision guides, not
-laws. This part gives you both halves. The full 37-principle catalog is in Chapter 56.*
+laws. This part gives you both halves. The full 37-principle catalog is in Chapter 67.*
 
 ---
 
-## Chapter 7 — Principles of Good Architecture
+## Chapter 18 — Principles of Good Architecture
 
 > Thirty-seven principles in seven families, each with intent, a good and a bad example, its
 > trade-off, how to apply it and how to validate it.
@@ -654,7 +2967,7 @@ fail securely
 
 **Operations** — observability · automation · repeatability · operational recoverability
 
-Every principle in this handbook carries six faces, and the full catalog in **Chapter 56** gives
+Every principle in this handbook carries six faces, and the full catalog in **Chapter 67** gives
 all of them for all 37:
 
 > **Intent** tells you what the principle is for, so you can tell when it does not apply.
@@ -682,7 +2995,7 @@ A team that cannot articulate these tensions will apply whichever principle it h
 
 ---
 
-## Chapter 8 — Applying Principles Without Becoming Dogmatic
+## Chapter 19 — Applying Principles Without Becoming Dogmatic
 
 > A principle applied without its intent is a superstition with good branding.
 
@@ -774,14 +3087,14 @@ If question four produces nothing, you are not reasoning.
 ---
 ---
 
-# PART IV — ARCHITECTURE LENSES
+# PART VI — ARCHITECTURE LENSES
 
 *A principle tells you how architecture should be shaped. A lens tells you which concern you are
 examining. Same architecture, different perspective.*
 
 ---
 
-## Chapter 9 — The Architecture Lens Model
+## Chapter 20 — The Architecture Lens Model
 
 | **Principle** | **Lens** |
 |---|---|
@@ -806,7 +3119,7 @@ Three conditional lenses: Cost · Compliance · Accessibility.
 ```
 
 > **The depth rule.** Not every lens gets equal depth. Depth is driven by architectural risk and by
-> the drivers you ranked in Chapter 5. Applying all nine at full depth to everything is how
+> the drivers you ranked in Chapter 16. Applying all nine at full depth to everything is how
 > architecture review becomes a ceremony people learn to route around.
 
 ### Choosing depth
@@ -830,7 +3143,7 @@ Three conditional lenses: Cost · Compliance · Accessibility.
 
 ---
 
-## Chapter 10 — Engineering Lens
+## Chapter 21 — Engineering Lens
 
 **Focus:** structure, cohesion, coupling, dependency direction, maintainability, testability,
 changeability, complexity.
@@ -875,7 +3188,7 @@ The second walkthrough is an architectural finding, produced without a single op
 
 ---
 
-## Chapter 11 — Product & Business Lens
+## Chapter 22 — Product & Business Lens
 
 **Focus:** business capabilities, product evolution, domain boundaries, critical workflows,
 business risk, value versus complexity.
@@ -906,7 +3219,7 @@ deployable with one that changes rarely unless something forces it.
 
 ---
 
-## Chapter 12 — UX Lens
+## Chapter 23 — UX Lens
 
 **Focus:** user workflows, latency, state, failure experiences, interruptions, accessibility,
 feedback, recovery.
@@ -944,7 +3257,7 @@ The UI pretends it is not.     The UI says so.
 
 ---
 
-## Chapter 13 — Developer Experience Lens
+## Chapter 24 — Developer Experience Lens
 
 **Focus:** discoverability, local development, contracts, tooling, debugging, consistency,
 architecture discoverability, safe change.
@@ -973,7 +3286,7 @@ measurement of your architecture’s discoverability.
 
 ---
 
-## Chapter 14 — Security Lens
+## Chapter 25 — Security Lens
 
 **Focus:** identity, authentication, authorization, trust boundaries, secrets, tenant isolation,
 data protection, threats, abuse cases, auditability.
@@ -1008,7 +3321,7 @@ data protection, threats, abuse cases, auditability.
 
 ---
 
-## Chapter 15 — Data Lens
+## Chapter 26 — Data Lens
 
 **Focus:** ownership, source of truth, lifecycle, consistency, integrity, replication, migration,
 retention, privacy.
@@ -1041,7 +3354,7 @@ entity is always a finding.
 
 ---
 
-## Chapter 16 — Reliability & Resilience Lens
+## Chapter 27 — Reliability & Resilience Lens
 
 **Focus:** failure modes, dependency failure, partial failure, retries, timeouts, idempotency,
 recovery, degradation.
@@ -1085,7 +3398,7 @@ invent one in production, badly.
 
 ---
 
-## Chapter 17 — Performance & Scalability Lens
+## Chapter 28 — Performance & Scalability Lens
 
 **Focus:** latency, throughput, concurrency, resource consumption, hot paths, growth, capacity,
 bottlenecks.
@@ -1128,7 +3441,7 @@ addition really costs.
 
 ---
 
-## Chapter 18 — Operations Lens
+## Chapter 29 — Operations Lens
 
 **Focus:** deployment, configuration, observability, incident response, recovery, rollback,
 capacity, operational complexity.
@@ -1156,7 +3469,7 @@ capacity, operational complexity.
 
 ---
 
-## Chapter 19 — Cost, Compliance & Accessibility Lenses
+## Chapter 30 — Cost, Compliance & Accessibility Lenses
 
 A conditional lens is not a lesser lens. When its trigger is present it may be the *dominant* lens —
 a residency requirement can determine the entire deployment topology. The discipline is in naming
@@ -1186,7 +3499,7 @@ render accessibly? Do asynchronous updates announce themselves?
 
 ---
 
-## Chapter 20 — Cross-Lens Architecture Review
+## Chapter 31 — Cross-Lens Architecture Review
 
 ```text
               Architecture Decision
@@ -1234,17 +3547,18 @@ Concerns with several ticks are where cross-discipline disagreement lives — re
 - Produce findings with evidence status rather than opinions
 - Record which lenses were skipped and why
 
+
 ---
 ---
 
-# PART V — FROM PRINCIPLES TO STANDARDS
+# PART VII — FROM PRINCIPLES TO STANDARDS
 
 *A principle nobody can check is a preference. This part is the machinery that turns reasoning into
 something a codebase actually obeys.*
 
 ---
 
-## Chapter 21 — Principles → Standards
+## Chapter 32 — Principles → Standards
 
 Each step removes ambiguity and adds enforceability.
 
@@ -1336,7 +3650,7 @@ VALIDATION  Contract tests calling every endpoint unauthenticated;
 
 ---
 
-## Chapter 22 — Architecture Standards
+## Chapter 33 — Architecture Standards
 
 A standard has four parts and fits on half a page: **statement** (what must be true), **rationale**
 (which principle and driver it serves), **verification** (how compliance is checked), and
@@ -1397,7 +3711,7 @@ second, undocumented standard.
 
 ---
 
-## Chapter 23 — Patterns & Reference Architectures
+## Chapter 34 — Patterns & Reference Architectures
 
 | **Standard** | **Pattern** |
 |---|---|
@@ -1437,14 +3751,14 @@ means checking that yours match — and recording the differences.
 ---
 ---
 
-# PART VI — ARCHITECTURE INITIALIZATION
+# PART VIII — ARCHITECTURE INITIALIZATION
 
 *You have a new project. This part takes you from “we have a problem” to “we have a defensible
 baseline”.*
 
 ---
 
-## Chapter 24 — Starting a New Project
+## Chapter 35 — Starting a New Project
 
 ```text
 Understand product
@@ -1464,13 +3778,13 @@ Define initial architecture
 
 | Step | Output | The trap |
 |---|---|---|
-| Understand product | Input brief (Ch. 4) | Accepting the feature list as the problem statement |
-| Identify drivers | Ranked, measured drivers (Ch. 5) | Everything is a driver, so nothing is |
-| Identify constraints | Register (Ch. 6) | Recording preferences as constraints to win an argument |
+| Understand product | Input brief (Ch. 15) | Accepting the feature list as the problem statement |
+| Identify drivers | Ranked, measured drivers (Ch. 16) | Everything is a driver, so nothing is |
+| Identify constraints | Register (Ch. 17) | Recording preferences as constraints to win an argument |
 | Identify principles | A short list your team will use | Adopting all 37 and applying none |
 | Identify lenses | Which get depth, which are skipped | Applying all of them shallowly |
-| Establish boundary | Context diagram (Ch. 25) | Drawing internals before the edge is agreed |
-| Define initial architecture | Containers and major components (Ch. 26) | Designing level 4 on day two |
+| Establish boundary | Context diagram (Ch. 36) | Drawing internals before the edge is agreed |
+| Define initial architecture | Containers and major components (Ch. 37) | Designing level 4 on day two |
 
 > **Pick five to eight principles, not thirty-seven.** Choose the ones your ranked drivers demand,
 > write them where engineers will see them, and make two or three enforceable.
@@ -1488,7 +3802,7 @@ Define initial architecture
 
 ---
 
-## Chapter 25 — Establishing System Context
+## Chapter 36 — Establishing System Context
 
 The context view answers one question: **what is ours, what is not, and what crosses between?** It
 is the cheapest architecture artifact to produce and the most expensive one to skip.
@@ -1534,7 +3848,7 @@ Exit cost      High — two competitors, both batch; 3 months
 
 ---
 
-## Chapter 26 — Establishing the Initial Architecture
+## Chapter 37 — Establishing the Initial Architecture
 
 Work outside in, one level at a time, and let each level be challenged before drawing the next.
 Each step below adds exactly one idea, and names the driver that forced it.
@@ -1582,7 +3896,7 @@ retryable or scheduled. Failure isolation demands they leave the request path.
 ```
 
 Five runtime pieces, each with a named driver. This is where initialization stops. Module boundaries
-inside the API are the next level down — Chapter 33’s business, not today’s.
+inside the API are the next level down — Chapter 44’s business, not today’s.
 
 > **Why each step names a driver.** Because that is the review. Any element that cannot name the
 > driver it serves is a candidate for removal — and this is the only moment when removing it is cheap.
@@ -1596,7 +3910,34 @@ inside the API are the next level down — Chapter 33’s business, not today’
 
 ---
 
-## Chapter 27 — Architecture Baseline
+## Chapter 38 — Architecture Baseline
+
+### What a baseline must minimally establish
+
+Seventeen items. Not seventeen documents — several are a paragraph and two are a name.
+The test is whether the architectural contract is established, not whether the folder is full.
+
+1. **Architecture context**
+2. **Architecture overview**
+3. **Major structural boundaries**
+4. **Key architectural patterns**
+5. **Runtime / behavioural model**
+6. **Data and integration boundaries**
+7. **Quality attributes with measures**
+8. **Security and trust boundaries**
+9. **Reliability and failure strategy**
+10. **Deployment model**
+11. **Key architectural decisions**
+12. **Constraints**
+13. **Assumptions**
+14. **Open questions**
+15. **Validation / evidence**
+16. **Owner and reviewer**
+17. **Baseline status and version**
+
+> **Sufficient, not exhaustive.** A baseline does not require every possible diagram. It
+> requires enough for a competent engineer to build against it, and enough for a reviewer to
+> disagree with it specifically. Volume is not the measure; *disagreeability* is.
 
 The baseline is the maintained answer to “what is this system, and why is it like this?”
 
@@ -1645,7 +3986,7 @@ OPEN QUESTIONS
 
 ---
 
-## Chapter 28 — Architecture Baseline Gate
+## Chapter 39 — Architecture Baseline Gate
 
 Ten criteria to pass before substantial delivery begins. Each has evidence that satisfies it.
 
@@ -1673,20 +4014,20 @@ Ten criteria to pass before substantial delivery begins. Each has evidence that 
 | Boundary undefined | Product scope genuinely unsettled | Timebox a scope decision; record the assumption you proceed on |
 | Drivers unranked | Nobody will say no to a stakeholder | Force a ranking in one session with the trade-off explicit |
 | No decisions recorded | Decisions were made implicitly | Reverse-engineer two or three ADRs from the current design |
-| Risks not identified | Assumptions never separated from facts | Run Chapter 6 on the current understanding |
+| Risks not identified | Assumptions never separated from facts | Run Chapter 17 on the current understanding |
 | No reviewer | No second architect available | Use a senior engineer from an adjacent team; outside eyes matter more than title |
 
 ---
 ---
 
-# PART VII — ARCHITECTURAL DECISION-MAKING
+# PART IX — ARCHITECTURAL DECISION-MAKING
 
 *Decisions are the durable part of architecture. Structures change; the reasoning is what lets the
 next person change them safely.*
 
 ---
 
-## Chapter 29 — What Is an Architectural Decision?
+## Chapter 40 — What Is an Architectural Decision?
 
 | | Means | Example |
 |---|---|---|
@@ -1713,7 +4054,7 @@ A decision is architecturally significant if any of these is true:
 
 ---
 
-## Chapter 30 — Decision Framework
+## Chapter 41 — Decision Framework
 
 ```text
 Problem
@@ -1785,7 +4126,7 @@ later” is a decision to let the system decide for you.
 
 ---
 
-## Chapter 31 — Architecture Decision Records
+## Chapter 42 — Architecture Decision Records
 
 ```text
 CONTEXT → PROBLEM → OPTIONS → CRITERIA → EVIDENCE → DECISION → CONSEQUENCES
@@ -1860,7 +4201,7 @@ writer per entity) · Risk R-02 (provider outage during the capture window).
 
 ---
 
-## Chapter 32 — Evidence, Experiments & Spikes
+## Chapter 43 — Evidence, Experiments & Spikes
 
 > The more consequential and uncertain the decision, the stronger the evidence should be.
 
@@ -1893,14 +4234,14 @@ writer per entity) · Risk R-02 (provider outage during the capture window).
 ---
 ---
 
-# PART VIII — SYSTEM DESIGN
+# PART X — SYSTEM DESIGN
 
 *Architecture says what the system is shaped like. System design says how a particular capability
 actually works — in enough detail to build safely, and no more.*
 
 ---
 
-## Chapter 33 — From Architecture to System Design
+## Chapter 44 — From Architecture to System Design
 
 ```text
 Architecture
@@ -1944,7 +4285,7 @@ these are answerable:
 
 ---
 
-## Chapter 34 — Designing Components
+## Chapter 45 — Designing Components
 
 A component design is seven short answers. If any is missing, the component is not designed — it is
 named.
@@ -1991,7 +4332,7 @@ depends on the domain rather than the reverse.
 
 ---
 
-## Chapter 35 — API & Contract Design
+## Chapter 46 — API & Contract Design
 
 - **Boundary** — who may call this, from which trust zone, what is validated on entry
 - **Commands vs queries** — commands change state and need idempotency; queries do not and can be cached
@@ -2034,7 +4375,7 @@ storms. `traceId` connects a user-visible failure to telemetry.
 
 ---
 
-## Chapter 36 — Data Design
+## Chapter 47 — Data Design
 
 Start from ownership, not from tables.
 
@@ -2080,7 +4421,7 @@ phantom events.
 
 ---
 
-## Chapter 37 — Workflow & Sequence Design
+## Chapter 48 — Workflow & Sequence Design
 
 A happy-path sequence diagram is a marketing artifact. The branches are where the architecture lives.
 
@@ -2103,7 +4444,7 @@ A happy-path sequence diagram is a marketing artifact. The branches are where th
 
 ---
 
-## Chapter 38 — State & Event Design
+## Chapter 49 — State & Event Design
 
 ```text
                  ┌──────────┐
@@ -2168,7 +4509,7 @@ export async function onOrderConfirmed(e: OrderConfirmed) {
 
 ---
 
-## Chapter 39 — Security Design
+## Chapter 50 — Security Design
 
 ```text
 Customer session ──▶ API
@@ -2217,7 +4558,7 @@ detective, and never mistaking one for the other in a review.
 
 ---
 
-## Chapter 40 — Runtime & Deployment Design
+## Chapter 51 — Runtime & Deployment Design
 
 ```text
 ┌─ REGION — EU-WEST ───────────────────────────────────────────┐
@@ -2250,17 +4591,18 @@ detective, and never mistaking one for the other in a review.
 > from a driver, affects how work is planned, and will be forgotten unless written down and enforced
 > by the pipeline. Operational rules deserve ADRs exactly as much as structural ones.
 
+
 ---
 ---
 
-# PART IX — ARCHITECTURE DOCUMENTATION
+# PART XI — ARCHITECTURE DOCUMENTATION
 
 *How to write and draw architecture: document types, drafting procedures, diagram selection, and
 what separates a diagram that teaches from one that decorates.*
 
 ---
 
-## Chapter 41 — Documentation as a System
+## Chapter 52 — Documentation as a System
 
 Treat documentation as a system with inputs, owners, update triggers and validation. The failure is
 never “we did not write anything”. It is that what was written had no owner, no trigger to update
@@ -2289,7 +4631,7 @@ problem wearing a discipline costume.
 
 ---
 
-## Chapter 42 — Architecture Document Types
+## Chapter 53 — Architecture Document Types
 
 | Type | Purpose | Created when | Owner | Reviewer |
 |---|---|---|---|---|
@@ -2355,7 +4697,7 @@ OBSERVABILITY
 
 ---
 
-## Chapter 43 — How to Write Architecture Documents
+## Chapter 54 — How to Write Architecture Documents
 
 ```text
  1  State the purpose — who reads this and what they must be able
@@ -2387,7 +4729,7 @@ OBSERVABILITY
 
 ---
 
-## Chapter 44 — Diagramming
+## Chapter 55 — Diagramming
 
 | Question | Artifact | Shows | Never shows |
 |---|---|---|---|
@@ -2429,7 +4771,7 @@ OBSERVABILITY
 
 ---
 
-## Chapter 45 — How to Draft a Diagram
+## Chapter 56 — How to Draft a Diagram
 
 ```text
 Question            what must a reader be able to answer?
@@ -2501,7 +4843,7 @@ carries more architectural weight than nine of the removed boxes.
 
 ---
 
-## Chapter 46 — Diagram Quality
+## Chapter 57 — Diagram Quality
 
 | Quality | Check | Failure it prevents |
 |---|---|---|
@@ -2528,11 +4870,11 @@ carries more architectural weight than nine of the removed boxes.
 ---
 ---
 
-# PART X — ARCHITECTURE REVIEW
+# PART XII — ARCHITECTURE REVIEW
 
 ---
 
-## Chapter 47 — Reviewing Architecture
+## Chapter 58 — Reviewing Architecture
 
 ```text
 Requirements     does it satisfy the drivers?
@@ -2565,7 +4907,7 @@ Risks            what could go wrong, and is that acceptable?
 
 ---
 
-## Chapter 48 — Architecture Review Checklist
+## Chapter 59 — Architecture Review Checklist
 
 **Structure**
 - [ ] Boundaries clear, named and enforced — *evidence: a list of boundaries, what crosses each, and the mechanism enforcing it. “Convention” is not a mechanism*
@@ -2605,15 +4947,93 @@ Risks            what could go wrong, and is that acceptable?
 
 ---
 
-## Chapter 49 — Architecture Gates
+## Chapter 60 — Architecture Gates
+
+### The four named gates
+
+#### Gate 1 — Architecture Initialization
+
+*Before structural work begins.*  
+**Do we understand the problem well enough to shape a system?**
+
+- [ ] Purpose stated in business terms
+- [ ] Scope, including what is out
+- [ ] Actors named with needs
+- [ ] System context established
+- [ ] Major capabilities listed
+- [ ] External dependencies identified with owners
+- [ ] Architectural drivers ranked
+- [ ] Initial quality attributes with measures
+- [ ] Constraints recorded with sources
+- [ ] Major boundaries proposed
+- [ ] An architecture owner and a reviewer named
+
+> **How this gate fails usefully.** Proceeding with an unranked driver list. Everything cannot be the priority, and if it is, structure will be decided by whoever codes first.
+
+#### Gate 2 — Architecture Baseline
+
+*Before the architecture is treated as agreed.*  
+**Is there a coherent architecture that people can build against and argue with?**
+
+- [ ] Context view
+- [ ] Structural model to the depth the risk justifies
+- [ ] Major patterns named with costs
+- [ ] Important runtime behaviour described
+- [ ] Data ownership and integration boundaries
+- [ ] Quality attributes with measures
+- [ ] Security and trust boundaries
+- [ ] Reliability and failure strategy
+- [ ] Deployment model
+- [ ] Significant decisions recorded
+- [ ] Assumptions with owners and review dates
+- [ ] Open questions with what each blocks
+- [ ] Validation evidence where the claim is expensive to be wrong about
+
+> **How this gate fails usefully.** A baseline with no open questions. It means they were hidden, not answered.
+
+#### Gate 3 — Detailed System Design
+
+*Before implementation of a significant capability.*  
+**Can this be built safely without discovering the architecture during the work?**
+
+- [ ] Component responsibilities understood
+- [ ] Interfaces and contracts defined
+- [ ] Data models defined, with indexes and transaction boundaries
+- [ ] Critical workflows defined step by step
+- [ ] Failure behaviour defined per step
+- [ ] Security behaviour defined
+- [ ] Integration behaviour defined, including failure and retry
+- [ ] Relevant decisions recorded
+
+> **How this gate fails usefully.** Design that stops at the happy path. The failure branches are where the estimates were wrong.
+
+#### Gate 4 — Architecture Change
+
+*Before implementing a change with architectural impact.*  
+**Do we know what this change costs the architecture, not just the sprint?**
+
+- [ ] Impact assessed against each view
+- [ ] Affected boundaries identified
+- [ ] Affected decisions identified — superseded or still valid
+- [ ] Options and trade-offs considered
+- [ ] Decision recorded
+- [ ] Architecture updated before, not after
+- [ ] Baseline version incremented
+
+> **How this gate fails usefully.** Assessing impact after the pull request is open. By then the decision has been made by the diff.
+
+> **Gate 4 is the one teams skip.** Initialization, baseline and design gates happen at
+> visible moments, so they get scheduled. The change gate has no moment — it belongs at the
+> start of every piece of work with architectural impact, which is exactly where nobody is
+> looking for a gate.
 
 | Gate | Passes when | Fails usefully by |
 |---|---|---|
-| Baseline | Architecture established and documented (Ch. 28) | Naming which of the ten criteria is missing |
-| Detailed design | Enough detail to implement safely (Ch. 33) | Identifying the unanswered design question |
-| Change | Architectural impact understood (Ch. 50) | Showing which areas are affected and unexamined |
+| Baseline | Architecture established and documented (Ch. 39) | Naming which of the ten criteria is missing |
+| Detailed design | Enough detail to implement safely (Ch. 44) | Identifying the unanswered design question |
+| Change | Architectural impact understood (Ch. 61) | Showing which areas are affected and unexamined |
 | Review | Relevant concerns examined through the right lenses | Listing the lens that has not been applied |
-| Evolution | The baseline again describes reality (Ch. 52) | Naming the document that no longer matches the system |
+| Evolution | The baseline again describes reality (Ch. 63) | Naming the document that no longer matches the system |
 
 > **Gates fail when they become schedule events.** The moment a gate is a date rather than a state,
 > it is passed by assertion. Keep criteria objective, keep evidence attached, and make failing a gate
@@ -2622,11 +5042,11 @@ Risks            what could go wrong, and is that acceptable?
 ---
 ---
 
-# PART XI — ARCHITECTURE EVOLUTION
+# PART XIII — ARCHITECTURE EVOLUTION
 
 ---
 
-## Chapter 50 — Architecture Impact
+## Chapter 61 — Architecture Impact
 
 ```text
 Change proposed
@@ -2666,7 +5086,27 @@ A change affects the architecture if any answer is yes:
 
 ---
 
-## Chapter 51 — Architecture Debt
+## Chapter 62 — Architecture Debt
+
+### The eleven kinds
+
+Architecture debt is not one thing. Naming the kind matters, because the repayment differs
+completely: a stale diagram is an afternoon, an eroded boundary is a quarter, and a duplicated
+architectural approach is a decision nobody wants to make.
+
+| Kind | What it is | How you notice |
+|---|---|---|
+| Accidental complexity | Structure that solves no current problem. | Nobody can explain why the layer exists. |
+| Boundary erosion | A boundary that is crossed so often it no longer exists. | The import rule has six exceptions. |
+| Inappropriate coupling | Two things that must change together but were designed not to. | Every change to one module ships with a change to another. |
+| Undocumented dependencies | Dependencies acquired accidentally, usually through shared utilities. | Removing a "helper" breaks four modules. |
+| Obsolete patterns | A pattern kept after the problem it solved disappeared. | "We do it this way because of the old queue." |
+| Stale diagrams | Views that describe a system that no longer exists. | New joiners are told which diagrams to ignore. |
+| Architecture / documentation drift | The code and the record diverged and nobody noticed. | The baseline version has not moved in a year of change. |
+| Deprecated decisions | ADRs that are still cited though their context is gone. | A decision justified by a constraint that was lifted. |
+| Temporary shortcuts made permanent | The thing that was going to be fixed next quarter. | A comment with a date in it, two years old. |
+| Inconsistent implementations | The same problem solved three ways in three modules. | Three retry implementations with three behaviours. |
+| Duplicated architectural approaches | Two competing structures for the same concern. | Two event buses. There is always a reason, and it is never a good one. |
 
 > Architecture debt is not simply “old code.”
 
@@ -2698,7 +5138,35 @@ eroded a boundary is debt on the day it merges.
 
 ---
 
-## Chapter 52 — Evolving the Baseline
+## Chapter 63 — Evolving the Baseline
+
+```text
+New Work
+   ↓
+Architecture Impact Assessment
+   ↓
+No meaningful impact?
+   ├── YES → Continue. Record that it was assessed.
+   └── NO
+        ↓
+     Assess — which views, which boundaries, which decisions
+        ↓
+     Decide — options, trade-offs, ADR
+        ↓
+     Design — to the depth the risk justifies
+        ↓
+     Update Architecture — before implementation, not after
+        ↓
+     Implement
+        ↓
+     Validate — evidence against the claim
+        ↓
+     Rebaseline — version moves, open questions updated
+```
+
+> **Record the assessments that found nothing.** The "no meaningful impact" branch is the one
+> that must leave a trace. Without it there is no way to distinguish work that was assessed and
+> cleared from work nobody looked at — and those two look identical six months later.
 
 **The change: “The system now needs asynchronous report generation.”** Farms want a weekly
 performance report over a full season of data — a query too heavy for the request path.
@@ -2766,9 +5234,9 @@ design session, one ADR, four artifact updates.
 ---
 ---
 
-# PART XII — COMPLETE WORKED EXAMPLE
+# PART XIV — COMPLETE WORKED EXAMPLE
 
-## Chapter 53 — Farm Commerce Platform, End to End
+## Chapter 64 — Farm Commerce Platform, End to End
 
 | # | Artifact | Chapter | What it produced |
 |---|---|---|---|
@@ -2799,17 +5267,17 @@ design session, one ADR, four artifact updates.
 
 > **What to notice on a second reading.** Every structural element traces to a ranked driver. Every
 > significant decision has rejected alternatives recorded. The hardest properties of the system — the
-> cut-off, the unknown capture state, the batch-only partner — were all discovered in Parts II and
-> VI, before any technology was chosen. That ordering is the entire method.
+> cut-off, the unknown capture state, the batch-only partner — were all discovered in Parts IV and
+> VIII, before any technology was chosen. That ordering is the entire method.
 
 ---
 ---
 
-# PART XIII — THE PRACTITIONER TOOLKIT
+# PART XV — THE PRACTITIONER TOOLKIT
 
 ---
 
-## Chapter 54 — Templates
+## Chapter 65 — Templates
 
 Fifteen templates. Adapt the sections to your organisation once, then keep them stable — a template
 that changes every quarter cannot be reviewed against, and comparison across projects is most of the
@@ -2817,21 +5285,21 @@ value.
 
 | Template | Purpose | Created when | Output |
 |---|---|---|---|
-| Architecture Input Brief (Ch. 4) | Capture everything the architecture must respond to | Start of a new system or major capability | 2–4 pages |
-| Architecture Baseline (Ch. 27) | The agreed current architectural model | End of initialization; every architectural change | Living document |
-| Architecture Overview (Ch. 42) | Orient a newcomer in ten minutes | Once a baseline exists | 2–5 pages, diagram-led |
-| Architecture Decision Record (Ch. 31) | Record one consequential decision | A decision passes the significance test | One page |
-| Constraints Register (Ch. 6) | Keep constraints distinct from assumptions | Initialization; reviewed at gates | Table |
-| Assumptions Register (Ch. 6) | Stop beliefs becoming facts | Initialization; reviewed quarterly | Table |
-| Architecture Risk Register (Ch. 47) | Track architectural risk with triggers | Initialization; every review | Table |
-| System Context (Ch. 25) | Agree the boundary | First artifact; on any integration change | Diagram + externals table |
-| Container Architecture (Ch. 40) | Describe the runnable parts | After context; before first deploy | Diagram + table |
-| Component Design (Ch. 34) | Design one component properly | Before building a significant component | 1–3 pages |
-| Sequence / Workflow (Ch. 37) | Show how a capability executes, including failure | Any workflow crossing boundaries | Diagram + step table |
-| Data Design (Ch. 36) | Model entities, ownership and consistency | Any new entity or ownership change | 2–4 pages |
-| Integration Design (Ch. 25) | Define the agreement with an external system | Before integrating | 1–3 pages |
-| Security Design (Ch. 39) | Make security structural | Security lens applied at depth | 2–5 pages |
-| Deployment Design (Ch. 40) | Describe how and where it runs | Before first production deploy | Diagram + table |
+| Architecture Input Brief (Ch. 15) | Capture everything the architecture must respond to | Start of a new system or major capability | 2–4 pages |
+| Architecture Baseline (Ch. 38) | The agreed current architectural model | End of initialization; every architectural change | Living document |
+| Architecture Overview (Ch. 53) | Orient a newcomer in ten minutes | Once a baseline exists | 2–5 pages, diagram-led |
+| Architecture Decision Record (Ch. 42) | Record one consequential decision | A decision passes the significance test | One page |
+| Constraints Register (Ch. 17) | Keep constraints distinct from assumptions | Initialization; reviewed at gates | Table |
+| Assumptions Register (Ch. 17) | Stop beliefs becoming facts | Initialization; reviewed quarterly | Table |
+| Architecture Risk Register (Ch. 58) | Track architectural risk with triggers | Initialization; every review | Table |
+| System Context (Ch. 36) | Agree the boundary | First artifact; on any integration change | Diagram + externals table |
+| Container Architecture (Ch. 51) | Describe the runnable parts | After context; before first deploy | Diagram + table |
+| Component Design (Ch. 45) | Design one component properly | Before building a significant component | 1–3 pages |
+| Sequence / Workflow (Ch. 48) | Show how a capability executes, including failure | Any workflow crossing boundaries | Diagram + step table |
+| Data Design (Ch. 47) | Model entities, ownership and consistency | Any new entity or ownership change | 2–4 pages |
+| Integration Design (Ch. 36) | Define the agreement with an external system | Before integrating | 1–3 pages |
+| Security Design (Ch. 50) | Make security structural | Security lens applied at depth | 2–5 pages |
+| Deployment Design (Ch. 51) | Describe how and where it runs | Before first production deploy | Diagram + table |
 
 ### Required sections
 
@@ -2893,11 +5361,11 @@ and triggers · configuration and secrets · deployment process and windows · r
 
 ---
 
-## Chapter 55 — Checklists
+## Chapter 66 — Checklists
 
 *Checklists are for recall, not for proof. Evidence lives in your project.*
 
-**New Project Architecture (Ch. 24)**
+**New Project Architecture (Ch. 35)**
 - [ ] Problem stated at business, user and system level
 - [ ] Actors and external systems identified
 - [ ] Quality requirements have measures
@@ -2909,7 +5377,7 @@ and triggers · configuration and secrets · deployment process and windows · r
 - [ ] Initial architecture elaborated level by level
 - [ ] Every structural element traces to a driver
 
-**Baseline Gate (Ch. 28)**
+**Baseline Gate (Ch. 39)**
 - [ ] System boundary defined
 - [ ] Major actors identified
 - [ ] Major capabilities understood
@@ -2921,7 +5389,7 @@ and triggers · configuration and secrets · deployment process and windows · r
 - [ ] Documentation exists and is findable
 - [ ] Owner and reviewer identified
 
-**System Design (Ch. 33)**
+**System Design (Ch. 44)**
 - [ ] Component owns a clear responsibility
 - [ ] Contracts defined including error sets
 - [ ] Dependencies and ports explicit
@@ -2933,7 +5401,7 @@ and triggers · configuration and secrets · deployment process and windows · r
 - [ ] Observability signals chosen
 - [ ] Migration path is reversible
 
-**Architecture Review (Ch. 48)**
+**Architecture Review (Ch. 59)**
 - [ ] Drivers read before the design
 - [ ] Boundaries clear and enforced
 - [ ] Coupling intentional
@@ -2946,7 +5414,7 @@ and triggers · configuration and secrets · deployment process and windows · r
 - [ ] User-visible consequences understood
 - [ ] Findings typed with next steps
 
-**Security Lens (Ch. 14)**
+**Security Lens (Ch. 25)**
 - [ ] Trust boundaries drawn
 - [ ] Authentication at every entry point
 - [ ] Authorisation in one layer, enforced everywhere
@@ -2958,7 +5426,7 @@ and triggers · configuration and secrets · deployment process and windows · r
 - [ ] Controls fail closed
 - [ ] Sensitive actions audited
 
-**Reliability Lens (Ch. 16)**
+**Reliability Lens (Ch. 27)**
 - [ ] Failure behaviour defined per dependency
 - [ ] Timeouts on every outbound call
 - [ ] Retry budgets bounded
@@ -2968,7 +5436,7 @@ and triggers · configuration and secrets · deployment process and windows · r
 - [ ] Recovery path documented
 - [ ] Restore practised with a recorded duration
 
-**Operations Lens (Ch. 18)**
+**Operations Lens (Ch. 29)**
 - [ ] Deployment independence decided
 - [ ] Configuration declared and versioned
 - [ ] Signals answer real incident questions
@@ -2978,7 +5446,7 @@ and triggers · configuration and secrets · deployment process and windows · r
 - [ ] On-call owner named
 - [ ] Operational surface accepted by those carrying it
 
-**UX Lens (Ch. 12)**
+**UX Lens (Ch. 23)**
 - [ ] Waiting state designed for each workflow
 - [ ] Failure state actionable by the user
 - [ ] Recovery possible without losing work
@@ -2987,7 +5455,7 @@ and triggers · configuration and secrets · deployment process and windows · r
 - [ ] Errors carry machine-readable meaning
 - [ ] Accessibility not blocked by architecture
 
-**DX Lens (Ch. 13)**
+**DX Lens (Ch. 24)**
 - [ ] Capability findable within an hour
 - [ ] Local development possible, or a useful slice
 - [ ] Contracts usable without reading implementations
@@ -2996,7 +5464,7 @@ and triggers · configuration and secrets · deployment process and windows · r
 - [ ] Correct path is the convenient path
 - [ ] Debugging crosses boundaries with correlation
 
-**Architecture Impact (Ch. 50)**
+**Architecture Impact (Ch. 61)**
 - [ ] Adds, removes or moves a boundary?
 - [ ] Changes ownership of data or capability?
 - [ ] Introduces or changes an external dependency?
@@ -3006,7 +5474,7 @@ and triggers · configuration and secrets · deployment process and windows · r
 - [ ] Contradicts a recorded decision or standard?
 - [ ] Expensive to reverse once shipped?
 
-**Architecture Evolution (Ch. 52)**
+**Architecture Evolution (Ch. 63)**
 - [ ] Impact assessed and recorded
 - [ ] Affected areas identified by lens
 - [ ] Options compared against existing drivers
@@ -3020,7 +5488,7 @@ and triggers · configuration and secrets · deployment process and windows · r
 
 ---
 
-## Chapter 56 — Reference
+## Chapter 67 — Reference
 
 ### Principle catalog
 

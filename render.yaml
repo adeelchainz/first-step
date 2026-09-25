@@ -1,0 +1,55 @@
+# Render blueprint for the Squid backlog.
+#
+# Deploy by pointing Render at this repository — it reads this file and
+# creates the service, so there is nothing to click through except the token.
+#
+# THE ONE THING TO GET RIGHT: the disk.
+#
+# Render replaces a service's filesystem on every deploy. Without the disk
+# below, squid-state.json is part of the image, and every deploy silently
+# throws away the team's ticks, assignments and states. The disk is a paid
+# add-on; if you would rather not pay for it, delete the `disk:` block AND
+# the SQUID_DATA variable, and read the "Free plan" section of
+# DEPLOY-RENDER.md before anyone relies on it.
+
+services:
+  - type: web
+    name: squid-backlog
+    runtime: node
+    plan: starter          # free has no disk; see the note above
+    region: frankfurt      # pick the one nearest the team
+    branch: main
+
+    # No dependencies to install. The server is one file and Node's own http.
+    buildCommand: 'echo "nothing to build"'
+    startCommand: 'node squid-server.mjs'
+
+    # Render polls this. It is deliberately outside the token check, so a
+    # guarded server does not look unhealthy and get restarted in a loop.
+    healthCheckPath: /healthz
+
+    envVars:
+      - key: NODE_VERSION
+        value: '22'
+
+      # Where state lives. Must be under the disk's mountPath, or it is part
+      # of the image and disappears on the next deploy.
+      - key: SQUID_DATA
+        value: /var/squid/squid-state.json
+
+      # Lets the server tell you, in its logs, whether the path above is
+      # actually on the disk — rather than finding out after a sprint.
+      - key: SQUID_DISK_MOUNT
+        value: /var/squid
+
+      # Required. The server refuses to start on a public address without it,
+      # because otherwise the whole backlog is world-writable to anyone who
+      # finds the URL. `generateValue` makes Render invent one; read it from
+      # the dashboard under Environment, or replace it with your own.
+      - key: SQUID_TOKEN
+        generateValue: true
+
+    disk:
+      name: squid-state
+      mountPath: /var/squid
+      sizeGB: 1
